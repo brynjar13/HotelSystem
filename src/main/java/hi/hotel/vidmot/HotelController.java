@@ -29,10 +29,6 @@ public class HotelController implements Initializable {
     HotelFile hotelFile;
     // ArrayList<Hotel> hotels;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        hotelFile = new HotelFile();
-        // hotels = hotelFile.hotels;
     @FXML
     private TextField textInput;
     @FXML
@@ -41,6 +37,8 @@ public class HotelController implements Initializable {
     ObservableList<Hotel> t = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        hotelFile = new HotelFile();
+        // hotels = hotelFile.hotels;
         Herbergi h = new Herbergi("basic", 1);
         Herbergi l = new Herbergi("svíta", 2);
         ArrayList<Herbergi> herbergi = new ArrayList<>();
