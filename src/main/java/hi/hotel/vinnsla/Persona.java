@@ -27,6 +27,15 @@ public class Persona {
         return bookingId;
     }
 
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nafn='" + nafn + '\'' +
+                ", email='" + email + '\'' +
+                ", kennitala='" + kennitala + '\'' +
+                '}';
+    }
+
     public String getKennitala() {
         return kennitala;
     }

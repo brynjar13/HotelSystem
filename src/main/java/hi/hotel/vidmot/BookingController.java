@@ -15,7 +15,7 @@ public class BookingController implements Initializable {
         ArrayList<Bokun> bokanir = bookingFile.bokanir;
         System.out.println(bokanir);
         for(Bokun b:bokanir) {
-            System.out.println("hallo" + b);
+            System.out.println(b);
         }
     }
 }

@@ -20,9 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -40,9 +38,8 @@ public class HotelController implements Initializable {
         hotels = hotelFile.hotels;
         BookingFile bookingFile = new BookingFile();
         ArrayList<Bokun> bokanir = bookingFile.bokanir;
-        System.out.println(bokanir);
         for(Bokun b:bokanir) {
-            System.out.println("hallo" + b);
+            System.out.println(b);
         }
     }
 
