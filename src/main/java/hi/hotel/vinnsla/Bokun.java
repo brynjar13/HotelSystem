@@ -2,7 +2,7 @@ package hi.hotel.vinnsla;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.UUID;
 
 public class Bokun {
     private int hotelId;
@@ -10,14 +10,21 @@ public class Bokun {
     private ArrayList<Persona> personur;
     private LocalDate checkIn;
     private LocalDate checkOut;
+    private UUID bookingnumber;
 
 
-    public Bokun(int hotelId,int herbergiId, ArrayList<Persona>  personur, LocalDate checkIn, LocalDate checkOut) {
+    public Bokun(int hotelId,int herbergiId, ArrayList<Persona>  personur, LocalDate checkIn, LocalDate checkOut, UUID bookingnumber) {
         this.hotelId = hotelId;
         this.herbergiId = herbergiId;
         this.personur = personur;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        if(bookingnumber == null) {
+            this.bookingnumber = UUID.randomUUID();
+        }else {
+            this.bookingnumber = bookingnumber;
+        }
+
     }
 
     public int getHerbergi() {
@@ -30,6 +37,10 @@ public class Bokun {
 
     public ArrayList<Persona> getPersonur() {
         return personur;
+    }
+
+    public UUID getBookingnumber() {
+        return bookingnumber;
     }
 
     public void setPersonur(ArrayList<Persona>  personur) {

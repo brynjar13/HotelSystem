@@ -1,5 +1,6 @@
 package hi.hotel.vinnsla;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,7 +8,7 @@ public class Herbergi {
     private String typa;
     private int id;
     private int hotelId;
-    private ArrayList<ArrayList<Date>> bookedDates = new ArrayList<>();
+    private ArrayList<ArrayList<LocalDate>> bookedDates = new ArrayList<>();
 
     public Herbergi(String typa, int id, int hotelId) {
         this.typa = typa;
@@ -15,8 +16,8 @@ public class Herbergi {
         this.hotelId = hotelId;
         bookedDates = new ArrayList<>();
     }
-    private void addDates(Date newCheckin,  Date newCheckout) {
-        ArrayList<Date> newDates = new ArrayList <> ();
+    private void addDates(LocalDate newCheckin,  LocalDate newCheckout) {
+        ArrayList<LocalDate> newDates = new ArrayList <> ();
         newDates.add(newCheckin);
         newDates.add(newCheckout);
         bookedDates.add(newDates);
@@ -30,11 +31,12 @@ public class Herbergi {
         return id;
     }
 
-    public ArrayList<ArrayList<Date>> getBookedDates() {
+    public ArrayList<ArrayList<LocalDate>> getBookedDates() {
         return bookedDates;
     }
 
     public int getHotelId() {
         return hotelId;
     }
+
 }

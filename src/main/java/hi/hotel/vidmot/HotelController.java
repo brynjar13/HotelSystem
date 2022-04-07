@@ -1,5 +1,6 @@
 package hi.hotel.vidmot;
 
+import hi.hotel.database.BookingFile;
 import hi.hotel.database.HotelFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,13 +38,12 @@ public class HotelController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hotelFile = new HotelFile();
         hotels = hotelFile.hotels;
-        ArrayList<Persona> persons = new ArrayList<>();
-        Persona person = new Persona("Hermann", "hemmi@example.com", "123456");
-        persons.add(person);
-        LocalDate ci = LocalDate.of(2021,1,1);
-        LocalDate co = LocalDate.of(2021,1,3);
-        System.out.println(hotels.get(0).getHerbergi(1));
-        Bokun bok = new Bokun(hotels.get(0).getId(), hotels.get(0).getHerbergi(1).getId(), persons,ci,co );
+        BookingFile bookingFile = new BookingFile();
+        ArrayList<Bokun> bokanir = bookingFile.bokanir;
+        System.out.println(bokanir);
+        for(Bokun b:bokanir) {
+            System.out.println("hallo" + b);
+        }
     }
 
     /**
