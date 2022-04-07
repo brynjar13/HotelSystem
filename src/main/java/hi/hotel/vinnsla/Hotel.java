@@ -16,8 +16,8 @@ public class Hotel {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public int getHerbergi(int i) {
-        return (herbergi.get(i)).getId();
+    public Herbergi getHerbergi(int i) {
+        return (herbergi.get(i));
     }
 
     @Override
