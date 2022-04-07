@@ -6,11 +6,13 @@ import java.util.Date;
 public class Herbergi {
     private String typa;
     private int id;
+    private int hotelId;
     private ArrayList<ArrayList<Date>> bookedDates = new ArrayList<>();
 
-    public Herbergi(String typa, int id) {
+    public Herbergi(String typa, int id, int hotelId) {
         this.typa = typa;
         this.id = id;
+        this.hotelId = hotelId;
         bookedDates = new ArrayList<>();
     }
     private void addDates(Date newCheckin,  Date newCheckout) {
@@ -30,5 +32,9 @@ public class Herbergi {
 
     public ArrayList<ArrayList<Date>> getBookedDates() {
         return bookedDates;
+    }
+
+    public int getHotelId() {
+        return hotelId;
     }
 }
