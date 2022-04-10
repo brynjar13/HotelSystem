@@ -103,7 +103,7 @@ public class HotelFile {
             if(kol.length != 4) {
                 break;
             }
-            personur.add(new Persona(kol[0], kol[1], kol[2],UUID.fromString(kol[3])));
+            personur.add(new Persona(kol[0], kol[1], kol[2], UUID.fromString(kol[3])));
         }
     }
 }

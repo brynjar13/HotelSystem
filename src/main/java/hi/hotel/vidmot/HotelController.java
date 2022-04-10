@@ -82,6 +82,7 @@ public class HotelController implements Initializable {
         hotelList.setItems(oHotelList);
     }
 
+    @FXML
     public void clickHotel(MouseEvent e) throws IOException {
         if (!e.getTarget().getClass().getName().toString().equals("com.sun.javafx.scene.control.LabeledText")) {
             e.consume();
@@ -103,6 +104,8 @@ public class HotelController implements Initializable {
         Stage stage = (Stage) hotelList.getScene().getWindow();
         scene.setUserData(fxmlLoader.getController());
         stage.setTitle("Hotel");
+        stage.setScene(scene);
+        stage.show();
     }
     public void makeBooking(ActionEvent ActionEvent) throws IOException {
         String bookingNumber = bookingSearch.getText();
