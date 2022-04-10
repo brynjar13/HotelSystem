@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -38,5 +39,7 @@
          </font>
       </Label>
       <Button fx:id="fxBokun" layoutX="610.0" layoutY="519.0" mnemonicParsing="false" text="Búa til bókun" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="650.0" />
+      <ChoiceBox fx:id="fxHerbergi" layoutX="472.0" layoutY="450.0" prefWidth="150.0" />
+      <Label layoutX="471.0" layoutY="430.0" text="Herbergi:" />
    </children>
 </AnchorPane>

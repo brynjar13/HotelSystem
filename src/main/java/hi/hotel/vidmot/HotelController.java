@@ -107,6 +107,7 @@ public class HotelController implements Initializable {
         HotelViewController hvc = fxmlLoader.getController();
         hvc.setHotelName(hotelInfoName);
         hvc.setHotelId(hotelInfoId);
+        hvc.setHerbergis(hotelInfoHerbergi);
         Stage stage = (Stage) hotelList.getScene().getWindow();
         scene.setUserData(fxmlLoader.getController());
         stage.setTitle("Hotel");
