@@ -12,7 +12,7 @@
       <VBox layoutX="175.0" layoutY="35.0" prefHeight="716.0" prefWidth="350.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="35.0">
          <children>
             <TextField id="inputField" fx:id="textInput" onAction="#search" onInputMethodTextChanged="#search" />
-            <ListView fx:id="hotelList" prefHeight="641.0" prefWidth="350.0" />
+            <ListView fx:id="hotelList" prefHeight="641.0" prefWidth="350.0" onMouseClicked="#clickHotel"/>
          </children>
       </VBox>
       <Button fx:id="searchButton" layoutX="555.0" layoutY="35.0" mnemonicParsing="false" onAction="#search" text="Button" />
