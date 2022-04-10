@@ -29,6 +29,10 @@ public class Hotel {
         return (herbergi.get(i));
     }
 
+    public ArrayList<Herbergi> getHerbergis() {
+        return herbergi;
+    }
+
     public String getArea() {
         return area;
     }
@@ -40,6 +44,7 @@ public class Hotel {
     public int getNumberOfRooms() {
         return numberOfRooms;
     }
+
 
     @Override
     public String toString() {

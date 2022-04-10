@@ -28,6 +28,7 @@ public class HotelController implements Initializable {
     ArrayList<Hotel> hotels;
     private String hotelInfoName;
     private int hotelInfoId;
+    private ArrayList<Herbergi> hotelInfoHerbergi;
 
     ArrayList<Bokun> bokanir;
     @FXML
@@ -140,6 +141,7 @@ public class HotelController implements Initializable {
             if (rightHotel.getName().equals(hotel.getText())) {
                 hotelInfoName = rightHotel.getName();
                 hotelInfoId = rightHotel.getId();
+                hotelInfoHerbergi = rightHotel.getHerbergis();
             }
         }
         FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("hotel.fxml"));
@@ -147,6 +149,7 @@ public class HotelController implements Initializable {
         HotelViewController hvc = fxmlLoader.getController();
         hvc.setHotelName(hotelInfoName);
         hvc.setHotelId(hotelInfoId);
+        hvc.setHerbergis(hotelInfoHerbergi);
         Stage stage = (Stage) hotelList.getScene().getWindow();
         scene.setUserData(fxmlLoader.getController());
         stage.setTitle("Hotel");
