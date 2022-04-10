@@ -1,17 +1,13 @@
 package hi.hotel.vidmot;
 
-import hi.hotel.database.BookingFile;
 import hi.hotel.database.HotelFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import hi.hotel.vinnsla.Bokun;
 import hi.hotel.vinnsla.Herbergi;
 import hi.hotel.vinnsla.Hotel;
-import hi.hotel.vinnsla.Persona;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -66,16 +62,24 @@ public class HotelController implements Initializable {
     public void search(ActionEvent ActionEvent)  {
         LocalDate checkIn = checkInDate.getValue();
         LocalDate checkOut = checkOutDate.getValue();
+        if(checkIn == null || checkOut == null) {
+            return;
+        }
         System.out.println(checkIn + " " + checkOut);
         ArrayList<Hotel> tempHotelList = new ArrayList<>();
         String input = textInput.getText();
+        boolean hasOpenRoom = false;
         for(Hotel h: hotels) {
             if(h.getName().contains(input)) {
                 for(int i = 0; i<(h.getNumberOfRooms()); i++) {
                     if (h.getHerbergi(i).hasDateOpen(checkIn, checkOut)) {
-                        tempHotelList.add(h);
+                        hasOpenRoom = true;
                     }
                 }
+                if(hasOpenRoom) {
+                    tempHotelList.add(h);
+                }
+                hasOpenRoom = false;
             }
         }
         ObservableList<Hotel> oHotelList = FXCollections.observableArrayList(tempHotelList);
