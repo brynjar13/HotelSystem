@@ -20,6 +20,10 @@ public class Hotel {
         return (herbergi.get(i));
     }
 
+    public ArrayList<Herbergi> getHerbergis() {
+        return herbergi;
+    }
+
     public int getNumberOfRooms() {
         return numberOfRooms;
     }

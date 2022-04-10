@@ -1,5 +1,6 @@
 package hi.hotel.vidmot;
 
+import hi.hotel.vinnsla.Herbergi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HotelViewController implements Initializable {
@@ -35,6 +37,7 @@ public class HotelViewController implements Initializable {
     @FXML
     private Button fxBokun;
     private int hotelId;
+    private ArrayList<Herbergi> herbergis;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,6 +46,10 @@ public class HotelViewController implements Initializable {
 
     public void setHotelName(String name) {
         fxHotelName.setText(name);
+    }
+
+    public void setHerbergis(ArrayList<Herbergi> h) {
+        herbergis = h;
     }
 
     public void setHotelId(int id) {
