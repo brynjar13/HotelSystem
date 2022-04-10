@@ -43,7 +43,7 @@ public class HotelFile {
             ArrayList<Herbergi> hotelherbergi= new ArrayList<>();
             String[] kol = scanner.next().split(",");
             for (int i = 0; i < herbergis.size(); i++) {
-                if (herbergis.get(i).getHotelId() == Integer.parseInt(kol[0])) {
+                    if (herbergis.get(i).getHotelId() == Integer.parseInt(kol[0])) {
                     hotelherbergi.add(herbergis.get(i));
                 }
             }
