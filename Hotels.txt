@@ -1,5 +1,5 @@
-1,Hótel Edda Isafjordur,3
-2,Hótel Borg,3
-3,Grand Hótel,3
-4,Hótel Edda Akureyri,3
-5,Hótel Egilsstaðir,3
+1,Hótel Edda Isafjörður,3,Ísafjörður,Vestfjörður,true
+2,Hótel Borg,3,Reykjavík,Höfuðborgarsvæðið,false
+3,Grand Hótel,3,Reykjavík,Höfuðborgarsvæðið,false
+4,Hótel Edda Akureyri,3,Akureyri,Norðurland,false
+5,Hótel Egilsstaðir,3,Egilsstaðir,Austurland,true

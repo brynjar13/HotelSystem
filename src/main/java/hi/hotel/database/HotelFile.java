@@ -63,7 +63,7 @@ public class HotelFile {
                 }
             }
             System.out.println(hotelherbergi.size());
-            hotels.add(new Hotel(hotelherbergi ,Integer.parseInt(kol[0]),kol[1], Integer.parseInt(kol[2])));
+            hotels.add(new Hotel(hotelherbergi ,Integer.parseInt(kol[0]),kol[1], Integer.parseInt(kol[2]), kol[3], kol[4], Boolean.parseBoolean(kol[5])));
         }
     }
     private void makeBookings() {

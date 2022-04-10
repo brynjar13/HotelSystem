@@ -42,16 +42,34 @@ public class HotelController implements Initializable {
     private DatePicker checkOutDate;
     @FXML
     private ListView hotelList;
+    @FXML
+    private ChoiceBox searchByTownChoiceBox;
+    @FXML
+    private ChoiceBox searchByAreaChoiceBox;
+    @FXML
+    private ChoiceBox breakfastChoiceBox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hotelFile = new HotelFile();
         hotels = hotelFile.hotels;
         bokanir = hotelFile.bokanir;
-        Herbergi herbergi = hotels.get(1).getHerbergi(1);
-        // herbergi.addDates(LocalDate.of(2021,05,06),LocalDate.of(2021,05,10) );
-        // herbergi.addDates(LocalDate.of(2021,07,06),LocalDate.of(2021,07,11) );
+        ObservableList<String> choiceBoxTownItems = FXCollections.observableArrayList();
+        ObservableList<String> choiceBoxAreaItems = FXCollections.observableArrayList();
+        choiceBoxTownItems.add("");
+        choiceBoxAreaItems.add("");
+        for(Hotel hotel:hotels) {
+            if(!choiceBoxTownItems.contains(hotel.getTown())) {
+                choiceBoxTownItems.add(hotel.getTown());
+            }
+            if(!choiceBoxAreaItems.contains(hotel.getArea())) {
+                choiceBoxAreaItems.add(hotel.getArea());
+            }
+        }
 
-        // boolean l = hotels.get(1).getHerbergi(1).hasDateOpen(LocalDate.of(2021,05,03),LocalDate.of(2021,05,7));
+        searchByTownChoiceBox.setItems(choiceBoxTownItems);
+        searchByAreaChoiceBox.setItems(choiceBoxAreaItems);
+        breakfastChoiceBox.setItems(FXCollections.observableArrayList("Morgunmatur innifalinn", "Já", "Nei"));
 
     }
 
@@ -65,12 +83,36 @@ public class HotelController implements Initializable {
         if(checkIn == null || checkOut == null) {
             return;
         }
-        System.out.println(checkIn + " " + checkOut);
+        String townSelected = null;
+        String areaSelected = null;
+        if(searchByTownChoiceBox.getValue() != null && searchByTownChoiceBox.getValue() != "") {
+            townSelected = searchByTownChoiceBox.getValue().toString();
+        }
+        if( searchByAreaChoiceBox.getValue() != null && searchByAreaChoiceBox.getValue() != "") {
+            areaSelected = searchByAreaChoiceBox.getValue().toString();
+        }
         ArrayList<Hotel> tempHotelList = new ArrayList<>();
         String input = textInput.getText();
         boolean hasOpenRoom = false;
         for(Hotel h: hotels) {
             if(h.getName().contains(input)) {
+                if((townSelected!= null) &&!townSelected.equals(h.getTown())) {
+                    continue;
+                }
+                if((areaSelected!= null) && (!areaSelected.equals(h.getArea()))) {
+                    continue;
+                }
+                if(breakfastChoiceBox.getValue() != null && !breakfastChoiceBox.getValue().toString().equals("Morgunmatur innifalinn"))  {
+                    boolean bool;
+                    if(breakfastChoiceBox.getValue().toString().equals("Já")) {
+                        bool = true;
+                    }else {
+                        bool = false;
+                    }
+                    if(bool != h.isBreakfastIncluded()) {
+                        continue;
+                    }
+                }
                 for(int i = 0; i<(h.getNumberOfRooms()); i++) {
                     if (h.getHerbergi(i).hasDateOpen(checkIn, checkOut)) {
                         hasOpenRoom = true;
