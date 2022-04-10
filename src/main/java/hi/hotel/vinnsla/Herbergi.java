@@ -2,7 +2,6 @@ package hi.hotel.vinnsla;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Herbergi {
     private String typa;
