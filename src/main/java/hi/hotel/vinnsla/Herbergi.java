@@ -1,6 +1,5 @@
 package hi.hotel.vinnsla;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,15 +34,13 @@ public class Herbergi {
 
     public boolean hasDateOpen(LocalDate Checkin,  LocalDate Checkout) {
         for(Bokun bokun: bookedDates) {
-                System.out.println("new row");
                 if(Checkin.isAfter(bokun.getCheckIn()) && Checkin.isBefore(bokun.getCheckOut())) {
-                    System.out.println(bokun.toString());
-                    System.out.println("CheckIn is at a booked time");
                     return false;
                 }
             if(Checkout.isAfter(bokun.getCheckIn()) && Checkout.isBefore(bokun.getCheckOut())) {
-                System.out.println(bokun.toString());
-                System.out.println("CheckIn is at a booked time");
+                return false;
+            }
+            if(bokun.getCheckIn().isAfter(Checkin) && bokun.getCheckIn().isBefore(Checkout)) {
                 return false;
             }
 

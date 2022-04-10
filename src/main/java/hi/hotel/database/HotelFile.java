@@ -27,7 +27,7 @@ public class HotelFile {
         File file = new File("herbergi.txt");
         Scanner scanner = null;
         try {
-            scanner = new Scanner(file).useDelimiter(";");
+            scanner = new Scanner(file).useDelimiter("\r\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class HotelFile {
         File file = new File("Hotels.txt");
         Scanner scanner = null;
         try {
-            scanner = new Scanner(file).useDelimiter(";");
+            scanner = new Scanner(file).useDelimiter("\r\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -71,7 +71,7 @@ public class HotelFile {
         File file = new File("Bookings.txt");
         Scanner scanner = null;
         try {
-            scanner = new Scanner(file).useDelimiter(";");
+            scanner = new Scanner(file).useDelimiter("\r\n");
         } catch (
                 FileNotFoundException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class HotelFile {
         File file = new File("Personur.txt");
         Scanner scanner = null;
         try {
-            scanner = new Scanner(file).useDelimiter(";");
+            scanner = new Scanner(file).useDelimiter("\r\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
