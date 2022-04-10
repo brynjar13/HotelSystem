@@ -20,6 +20,10 @@ public class Hotel {
         return (herbergi.get(i));
     }
 
+    public int getNumberOfRooms() {
+        return numberOfRooms;
+    }
+
     @Override
     public String toString() {
         return name;

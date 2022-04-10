@@ -15,14 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -38,11 +36,20 @@ public class HotelController implements Initializable {
     @FXML
     private TextField bookingSearch;
     @FXML
+    private DatePicker checkInDate;
+    @FXML
+    private DatePicker checkOutDate;
+    @FXML
     private ListView hotelList;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hotelFile = new HotelFile();
         hotels = hotelFile.hotels;
+        Herbergi herbergi = hotels.get(1).getHerbergi(1);
+        herbergi.addDates(LocalDate.of(2021,05,06),LocalDate.of(2021,05,10) );
+        herbergi.addDates(LocalDate.of(2021,07,06),LocalDate.of(2021,07,11) );
+
+        boolean l = hotels.get(1).getHerbergi(1).hasDateOpen(LocalDate.of(2021,05,03),LocalDate.of(2021,05,7));
         BookingFile bookingFile = new BookingFile();
         bokanir = bookingFile.bokanir;
     }
@@ -52,11 +59,19 @@ public class HotelController implements Initializable {
      * @param ActionEvent
      */
     public void search(ActionEvent ActionEvent)  {
+        LocalDate checkIn = checkInDate.getValue();
+        LocalDate checkOut = checkOutDate.getValue();
+        System.out.println(checkIn + " " + checkOut);
         ArrayList<Hotel> tempHotelList = new ArrayList<>();
         String input = textInput.getText();
         for(Hotel h: hotels) {
+            System.out.println(h.getHerbergi(0));
             if(h.getName().contains(input)) {
-                tempHotelList.add(h);
+                for(int i = 0; i<(h.getNumberOfRooms()); i++) {
+                    if (h.getHerbergi(i).hasDateOpen(checkIn, checkOut)) {
+                        tempHotelList.add(h);
+                    }
+                }
             }
         }
         ObservableList<Hotel> oHotelList = FXCollections.observableArrayList(tempHotelList);
