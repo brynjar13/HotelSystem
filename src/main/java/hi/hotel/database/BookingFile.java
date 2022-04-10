@@ -15,27 +15,7 @@ public class BookingFile {
     public ArrayList<Persona> personur = new ArrayList<>();
     public BookingFile() {
         makePersons();
-        File file = new File("Bookings.txt");
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file).useDelimiter(";");
-        } catch (
-                FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while (scanner.hasNext()) {
-            String[] kol = scanner.next().split(",");
-            ArrayList<Persona> personsInBooking= new ArrayList<>();
-            LocalDate ci = LocalDate.parse(kol[3]);
-            LocalDate co = LocalDate.parse(kol[4]);
-            UUID bookingNum = UUID.fromString(kol[5]);
-            for (int i = 0; i < personur.size(); i++) {
-                if (personur.get(i).getBookingId().toString().equals(bookingNum.toString())) {
-                    personsInBooking.add(personur.get(i));
-                }
-            }
-            bokanir.add(new Bokun(Integer.parseInt(kol[0]), Integer.parseInt(kol[1]),personsInBooking, ci,co,bookingNum));
-        }
+
     }
     public void makePersons() {
         File file = new File("Personur.txt");
