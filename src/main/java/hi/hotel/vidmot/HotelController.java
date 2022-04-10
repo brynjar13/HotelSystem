@@ -50,13 +50,13 @@ public class HotelController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hotelFile = new HotelFile();
         hotels = hotelFile.hotels;
+        bokanir = hotelFile.bokanir;
         Herbergi herbergi = hotels.get(1).getHerbergi(1);
-        herbergi.addDates(LocalDate.of(2021,05,06),LocalDate.of(2021,05,10) );
-        herbergi.addDates(LocalDate.of(2021,07,06),LocalDate.of(2021,07,11) );
+        // herbergi.addDates(LocalDate.of(2021,05,06),LocalDate.of(2021,05,10) );
+        // herbergi.addDates(LocalDate.of(2021,07,06),LocalDate.of(2021,07,11) );
 
-        boolean l = hotels.get(1).getHerbergi(1).hasDateOpen(LocalDate.of(2021,05,03),LocalDate.of(2021,05,7));
-        BookingFile bookingFile = new BookingFile();
-        bokanir = bookingFile.bokanir;
+        // boolean l = hotels.get(1).getHerbergi(1).hasDateOpen(LocalDate.of(2021,05,03),LocalDate.of(2021,05,7));
+
     }
 
     /**
@@ -70,7 +70,6 @@ public class HotelController implements Initializable {
         ArrayList<Hotel> tempHotelList = new ArrayList<>();
         String input = textInput.getText();
         for(Hotel h: hotels) {
-            System.out.println(h.getHerbergi(0));
             if(h.getName().contains(input)) {
                 for(int i = 0; i<(h.getNumberOfRooms()); i++) {
                     if (h.getHerbergi(i).hasDateOpen(checkIn, checkOut)) {
