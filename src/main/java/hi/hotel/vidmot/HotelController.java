@@ -174,6 +174,7 @@ public class HotelController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         BookingController sc =  fxmlLoader.getController();
         Stage stage = (Stage) searchBookingBtn.getScene().getWindow();
+        sc.setBokunId(bookingNrtoUUID);
         stage.setTitle("Booking");
         stage.setScene(scene);
         stage.show();

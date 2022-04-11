@@ -7,6 +7,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hi.hotel.vidmot.BookingController">
     <children>
       <TextField text="Halló" />
-        <Button fx:id="searchButton" layoutX="555.0" layoutY="35.0" mnemonicParsing="false" text="Button" />
+        <Button fx:id="fxEydaBokun" layoutX="208.0" layoutY="1.0" mnemonicParsing="false" onAction="#eydaBokun" text="Button" />
     </children>
 </AnchorPane>
