@@ -63,6 +63,10 @@ public class Bokun {
         this.checkOut = checkOut;
     }
 
+    public int getHotelId() {
+        return hotelId;
+    }
+
     @Override
     public String toString() {
         return "Bokun{" +
