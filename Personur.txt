@@ -1,6 +1,5 @@
 Hermann,Hermann@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120003
-Brynjar,brynjar@test.is,12345678,052182e2-b67f-11ec-b909-0242ac120003
 Eggert,Eggert@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120002
-Bergur,Bergur@test.is,02452,052182e2-b67f-11ec-b909-0242ac120002
 Helena,Heruiluin@example.is,1234562343,052182e2-b67f-11ec-b909-0242ac120005
-Sigrun,tulur@test.is,1232344334,052182e2-b67f-11ec-b909-0242ac120005
+Helgi,he@ex.is,23423,6b190cb5-67d8-495a-b10f-3a014da2dfdc
+Hermann,he@ex.is,0123,b1ee35de-25c0-4107-b4a4-377a57691db9

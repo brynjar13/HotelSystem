@@ -8,12 +8,16 @@ public class Herbergi {
     private int id;
     private int hotelId;
     private ArrayList<Bokun> bookedDates;
+    private int pricePerNight;
+    private int spaceFor;
 
-    public Herbergi(String typa, int id, int hotelId, ArrayList<Bokun> bookedDates) {
+    public Herbergi(String typa, int id, int hotelId, ArrayList<Bokun> bookedDates, int pricePerNight, int spaceFor) {
         this.typa = typa;
         this.id = id;
         this.hotelId = hotelId;
         this.bookedDates = bookedDates;
+        this.pricePerNight = pricePerNight;
+        this.spaceFor = spaceFor;
     }
     public void addBooking(Bokun bokun) {
        bookedDates.add(bokun);
@@ -25,6 +29,14 @@ public class Herbergi {
 
     public int getId() {
         return id;
+    }
+
+    public int getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public int getSpaceFor() {
+        return spaceFor;
     }
 
     public ArrayList<Bokun>  getBookings() {

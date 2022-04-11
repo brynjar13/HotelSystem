@@ -40,7 +40,7 @@ public class HotelFile {
                     bokanirHerbergi.add(bokanir.get(i));
                 }
             }
-            Herbergi herbergi = new Herbergi(kol[0], Integer.parseInt(kol[1]), Integer.parseInt(kol[2]), bokanirHerbergi);
+            Herbergi herbergi = new Herbergi(kol[0], Integer.parseInt(kol[1]), Integer.parseInt(kol[2]), bokanirHerbergi, Integer.parseInt(kol[3]), Integer.parseInt(kol[4]));
             herbergis.add(herbergi);
         }
     }
@@ -78,16 +78,16 @@ public class HotelFile {
         }
         while (scanner.hasNext()) {
             String[] kol = scanner.next().split(",");
-            ArrayList<Persona> personsInBooking= new ArrayList<>();
+            Persona personInBooking= null;
             LocalDate ci = LocalDate.parse(kol[3]);
             LocalDate co = LocalDate.parse(kol[4]);
             UUID bookingNum = UUID.fromString(kol[5]);
             for (int i = 0; i < personur.size(); i++) {
                 if (personur.get(i).getBookingId().toString().equals(bookingNum.toString())) {
-                    personsInBooking.add(personur.get(i));
+                    personInBooking = personur.get(i);
                 }
             }
-            bokanir.add(new Bokun(Integer.parseInt(kol[0]), Integer.parseInt(kol[1]),personsInBooking, ci,co,bookingNum));
+            bokanir.add(new Bokun(Integer.parseInt(kol[0]), Integer.parseInt(kol[1]),personInBooking, ci,co,bookingNum));
         }
     }
     public void makePersons() {

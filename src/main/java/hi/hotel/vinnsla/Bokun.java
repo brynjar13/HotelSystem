@@ -7,16 +7,16 @@ import java.util.UUID;
 public class Bokun {
     private int hotelId;
     private int herbergiId;
-    private ArrayList<Persona> personur;
+    private Persona persona;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private UUID bookingnumber;
 
 
-    public Bokun(int hotelId,int herbergiId, ArrayList<Persona>  personur, LocalDate checkIn, LocalDate checkOut, UUID bookingnumber) {
+    public Bokun(int hotelId,int herbergiId, Persona  persona, LocalDate checkIn, LocalDate checkOut, UUID bookingnumber) {
         this.hotelId = hotelId;
         this.herbergiId = herbergiId;
-        this.personur = personur;
+        this.persona = persona;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         if(bookingnumber == null) {
@@ -35,16 +35,16 @@ public class Bokun {
         this.herbergiId = herbergiId;
     }
 
-    public ArrayList<Persona> getPersonur() {
-        return personur;
+    public Persona getPersona() {
+        return persona;
     }
 
     public UUID getBookingnumber() {
         return bookingnumber;
     }
 
-    public void setPersonur(ArrayList<Persona>  personur) {
-        this.personur = personur;
+    public void setPersona(Persona  persona) {
+        this.persona = persona;
     }
 
     public LocalDate getCheckIn() {
@@ -68,7 +68,7 @@ public class Bokun {
         return "Bokun{" +
                 "hotelId=" + hotelId +
                 ", herbergi=" + herbergiId +
-                ", personur=" + personur +
+                ", persona=" + persona +
                 ", checkIn=" + checkIn +
                 ", checkOut=" + checkOut +
                 '}';

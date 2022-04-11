@@ -23,19 +23,26 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
 public class HotelViewController implements Initializable {
     @FXML
+    private Label fxPrice;
+    @FXML
+    private Label fxSpaceFor;
+    @FXML
+    private Label fxTotalCost;
+    @FXML
+    private Label fxCheckinChosen;
+    @FXML
+    private Label fxCheckoutChosen;
+    @FXML
     private Label fxHotelName;
     @FXML
     private ImageView fxHotelImage;
-    @FXML
-    private DatePicker fxCheckinDate;
-    @FXML
-    private DatePicker fxCheckoutDate;
     @FXML
     private TextField fxName;
     @FXML
@@ -47,12 +54,14 @@ public class HotelViewController implements Initializable {
     @FXML
     private ChoiceBox fxHerbergi;
     private int hotelId;
+    private Hotel hotel;
     private ArrayList<Herbergi> herbergis;
     private HotelFile hotelFile = new HotelFile();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fxBokun.disableProperty().bind(fxCheckinDate.valueProperty().isNull().or(fxCheckoutDate.valueProperty().isNull().or(fxName.textProperty().isEmpty().or(fxEmail.textProperty().isEmpty().or(fxKennitala.textProperty().isEmpty().or(fxHerbergi.valueProperty().isNull()))))));
+        fxBokun.disableProperty().bind(fxName.textProperty().isEmpty().or(fxEmail.textProperty().isEmpty().or(fxKennitala.textProperty().isEmpty().or(fxHerbergi.valueProperty().isNull()))));
+
     }
 
     public void setHotelName(String name) {
@@ -77,6 +86,26 @@ public class HotelViewController implements Initializable {
             fxHotelImage.setImage(hotelImage);
         }
     }
+    public void setHotel(Hotel h) {
+        hotel = h;
+    }
+    public void setDatesChosen(LocalDate checkIn, LocalDate checkOut) {
+        fxCheckinChosen.setText(checkIn.toString());
+        fxCheckoutChosen.setText(checkOut.toString());
+    }
+    public void setPrice(int price) {
+        fxPrice.setText(price+ " kr.");
+    }
+    public void setFxSpaceFor(int spaceFor) {
+        fxSpaceFor.setText(Integer.toString(spaceFor));
+    }
+    public void setFxTotalCost() {
+        LocalDate cin = LocalDate.parse(fxCheckinChosen.getText());
+        LocalDate cout = LocalDate.parse(fxCheckoutChosen.getText());
+        long days= ChronoUnit.DAYS.between(cin,cout);
+        int totalCost = (int)days * Integer.parseInt(fxPrice.getText().replace(" kr.", ""));
+        fxTotalCost.setText(totalCost+ " kr.");
+    }
 
     @FXML
     private void backToHotelSelection(ActionEvent e) throws IOException {
@@ -96,8 +125,8 @@ public class HotelViewController implements Initializable {
         String name = fxName.getText();
         String email = fxEmail.getText();
         String kennitala = fxKennitala.getText();
-        LocalDate checkin = fxCheckinDate.getValue();
-        LocalDate checkout = fxCheckoutDate.getValue();
+        LocalDate checkin = LocalDate.parse(fxCheckinChosen.getText());
+        LocalDate checkout = LocalDate.parse(fxCheckoutChosen.getText());
         int herbergiId = 0;
 
         String herbergiName = String.valueOf(fxHerbergi.getValue());
@@ -137,5 +166,15 @@ public class HotelViewController implements Initializable {
 
     private void setPersonurInBooking() {
         hotelFile.makeBookings();
+    }
+
+    public void setRoomInfo(ActionEvent actionEvent) {
+        for(Herbergi herbergi : hotel.getHerbergis()) {
+            if(herbergi.getTypa() == fxHerbergi.getValue()) {
+                setPrice(herbergi.getPricePerNight());
+                setFxSpaceFor(herbergi.getSpaceFor());
+                setFxTotalCost();
+            }
+        }
     }
 }

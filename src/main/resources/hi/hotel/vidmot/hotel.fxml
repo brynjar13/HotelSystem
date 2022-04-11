@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -17,17 +16,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="573.0" layoutY="62.0" mnemonicParsing="false" onAction="#backToHotelSelection" text="Til baka" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <DatePicker fx:id="fxCheckinDate" layoutX="98.0" layoutY="401.0" AnchorPane.topAnchor="450.0" />
-      <DatePicker fx:id="fxCheckoutDate" layoutX="285.0" layoutY="401.0" AnchorPane.topAnchor="450.0" />
-      <Label layoutX="98.0" layoutY="350.0" text="Dagsetning" AnchorPane.topAnchor="400.0">
+      <Button layoutX="10.0" layoutY="663.0" mnemonicParsing="false" onAction="#backToHotelSelection" text="Til baka" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="663.0" />
+      <Label layoutX="97.0" layoutY="385.0" text="Herbergi:" AnchorPane.topAnchor="385.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="98.0" layoutY="376.0" text="Frá:" AnchorPane.topAnchor="430.0" />
-      <Label layoutX="285.0" layoutY="376.0" text="Til:" AnchorPane.topAnchor="430.0" />
-      <TextField fx:id="fxName" layoutX="100.0" layoutY="460.0" AnchorPane.topAnchor="600.0" />
+      <Label layoutX="57.0" layoutY="48.0" text="Frá:" AnchorPane.topAnchor="48.0" />
+      <Label layoutX="153.0" layoutY="48.0" text="Til:" AnchorPane.topAnchor="48.0" />
       <Label layoutX="103.0" layoutY="443.0" text="Nafn:" AnchorPane.topAnchor="580.0" />
       <Label layoutX="286.0" layoutY="443.0" text="Email:" AnchorPane.topAnchor="580.0" />
       <TextField fx:id="fxEmail" layoutX="285.0" layoutY="460.0" AnchorPane.topAnchor="600.0" />
@@ -38,8 +34,45 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="fxBokun" onAction="#geraBokun" layoutX="610.0" layoutY="519.0" mnemonicParsing="false" text="Búa til bókun" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="650.0" />
-      <ChoiceBox fx:id="fxHerbergi" layoutX="472.0" layoutY="450.0" prefWidth="150.0" />
-      <Label layoutX="471.0" layoutY="430.0" text="Herbergi:" />
+      <Button fx:id="fxBokun" layoutX="610.0" layoutY="519.0" mnemonicParsing="false" onAction="#geraBokun" text="Búa til bókun" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="650.0" />
+      <ChoiceBox fx:id="fxHerbergi" layoutX="176.0" layoutY="387.0" onAction="#setRoomInfo" prefWidth="150.0" />
+      <Label layoutX="101.0" layoutY="422.0" text="Verð hver nótt:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="449.0" text="Pláss fyrir: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="106.0" layoutY="483.0" text="Heildarkostnaður:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="fxPrice" layoutX="225.0" layoutY="422.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="fxSpaceFor" layoutX="267.0" layoutY="449.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="fxTotalCost" layoutX="267.0" layoutY="483.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="fxCheckinChosen" layoutX="84.0" layoutY="48.0" text="Frá:" />
+      <Label fx:id="fxCheckoutChosen" layoutX="174.0" layoutY="48.0" text="Til:" />
+      <TextField fx:id="fxName" layoutX="107.0" layoutY="600.0" />
+      <Label fx:id="fxPrice1" layoutX="277.0" layoutY="432.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
