@@ -1,7 +1,10 @@
 package hi.hotel.vidmot;
 
+import hi.hotel.database.HotelFile;
+import hi.hotel.vinnsla.Bokun;
 import hi.hotel.vinnsla.Herbergi;
 import hi.hotel.vinnsla.Hotel;
+import hi.hotel.vinnsla.Persona;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,10 +17,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class HotelViewController implements Initializable {
     @FXML
@@ -40,6 +48,7 @@ public class HotelViewController implements Initializable {
     private ChoiceBox fxHerbergi;
     private int hotelId;
     private ArrayList<Herbergi> herbergis;
+    private HotelFile hotelFile = new HotelFile();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -79,5 +88,54 @@ public class HotelViewController implements Initializable {
         stage.setTitle("Hotel");
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    public void geraBokun(ActionEvent event) throws IOException {
+        UUID uuid = UUID.randomUUID();
+        String name = fxName.getText();
+        String email = fxEmail.getText();
+        String kennitala = fxKennitala.getText();
+        LocalDate checkin = fxCheckinDate.getValue();
+        LocalDate checkout = fxCheckoutDate.getValue();
+        int herbergiId = 0;
+
+        String herbergiName = String.valueOf(fxHerbergi.getValue());
+        for (Herbergi h:
+             herbergis) {
+            if (h.getTypa() == herbergiName) {
+                Herbergi herbergi = h;
+                herbergiId = herbergi.getId();
+            }
+        }
+        writeBooking(hotelId, herbergiId, checkin, checkout, uuid);
+        writePerson(name, email, kennitala, uuid);
+
+        setPersonurInBooking();
+
+        backToHotelSelection(event);
+    }
+
+    private void writePerson(String name, String email, String kennitala, UUID uuid) throws IOException {
+        File file = new File("Personur.txt");
+        FileWriter fileWriter = new FileWriter(file, true);
+        BufferedWriter writer = new BufferedWriter(fileWriter);
+        writer.newLine();
+        writer.write(name + "," + email + "," + kennitala + "," + uuid);
+        writer.close();
+    }
+
+    private void writeBooking(int hotelId, int herbergiId, LocalDate checkIn, LocalDate checkOut, UUID uuid) throws IOException {
+        System.out.println("writing..");
+        File file = new File("Bookings.txt");
+        FileWriter fileWriter = new FileWriter(file, true);
+        BufferedWriter writer = new BufferedWriter(fileWriter);
+        writer.newLine();
+        writer.write(hotelId + "," + herbergiId + "," + "null," + checkIn + "," + checkOut + "," + uuid);
+        writer.close();
+    }
+
+    private void setPersonurInBooking() {
+        hotelFile.makeBookings();
     }
 }
