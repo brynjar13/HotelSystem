@@ -5,8 +5,11 @@ import hi.hotel.vinnsla.Bokun;
 import hi.hotel.vinnsla.Persona;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,6 +24,8 @@ public class BookingController implements Initializable {
 
     @FXML
     private Button fxEydaBokun;
+    @FXML
+    private Button fxBack;
     private UUID bokunId;
     private HotelFile hotelFile = new HotelFile();
     private ArrayList<Bokun> bokanir;
@@ -49,6 +54,8 @@ public class BookingController implements Initializable {
         }
         resetBokanir();
         resetPersonur();
+
+        backToMenu(event);
     }
 
     private void resetBokanir() throws IOException {
@@ -79,5 +86,16 @@ public class BookingController implements Initializable {
             }
         }
         writer.close();
+    }
+
+    public void backToMenu(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("frontpage.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+        HotelController hc =  fxmlLoader.getController();
+        Stage stage = (Stage) fxEydaBokun.getScene().getWindow();
+        scene.setUserData(fxmlLoader.getController());
+        stage.setTitle("Hotel");
+        stage.setScene(scene);
+        stage.show();
     }
 }

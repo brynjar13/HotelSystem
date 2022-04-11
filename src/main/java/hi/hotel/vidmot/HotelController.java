@@ -171,7 +171,7 @@ public class HotelController implements Initializable {
             }
         }
         FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("bokun.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
         BookingController sc =  fxmlLoader.getController();
         Stage stage = (Stage) searchBookingBtn.getScene().getWindow();
         sc.setBokunId(bookingNrtoUUID);
