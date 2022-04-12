@@ -80,7 +80,7 @@ public class HotelController implements Initializable {
         searchByTownChoiceBox.setItems(choiceBoxTownItems);
         searchByAreaChoiceBox.setItems(choiceBoxAreaItems);
         breakfastChoiceBox.setItems(FXCollections.observableArrayList("", "Já", "Nei"));
-        fxRequiredSpace.setItems(FXCollections.observableArrayList(1,2,3,4));
+        fxRequiredSpace.setItems(FXCollections.observableArrayList("",1,2,3,4));
 
     }
 
@@ -98,7 +98,7 @@ public class HotelController implements Initializable {
         String townSelected = null;
         String areaSelected = null;
         int spaceFor = 0;
-        if(fxRequiredSpace.getValue() != null) {
+        if(fxRequiredSpace.getValue() != null && fxRequiredSpace.getValue() != "") {
             spaceFor = (int) fxRequiredSpace.getValue();
         }
         if(searchByTownChoiceBox.getValue() != null && searchByTownChoiceBox.getValue() != "") {
@@ -130,7 +130,6 @@ public class HotelController implements Initializable {
                     }
                 }
                 for(int i = 0; i<(h.getNumberOfRooms()); i++) {
-                    System.out.println(h.getHerbergi(i));
                     if (h.getHerbergi(i).hasDateOpen(checkIn, checkOut)) {
                         availableRooms++;
                     }
@@ -176,7 +175,7 @@ public class HotelController implements Initializable {
         HotelViewController hvc = fxmlLoader.getController();
         hvc.setHotelName(hotelInfoName);
         hvc.setHotelId(hotelInfoId);
-        if(fxRequiredSpace.getValue() != null) {
+        if(fxRequiredSpace.getValue() != null && fxRequiredSpace.getValue() != "") {
             hvc.setNumOfGuests((Integer) fxRequiredSpace.getValue());
         }
         hvc.setHerbergis(hotelInfoHerbergi);

@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="700.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hi.hotel.vidmot.HotelController">
    <children>
       <Button fx:id="searchButton" layoutX="668.0" layoutY="150.0" mnemonicParsing="false" onAction="#search" text="Leita" />
-      <Button fx:id="searchBookingBtn" layoutX="812.0" layoutY="36.0" mnemonicParsing="false" onAction="#makeBooking" text="Leita" />
+      <Button fx:id="searchBookingBtn" layoutX="812.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchForBooking" text="Leita" />
       <TextField fx:id="bookingSearch" layoutX="664.0" layoutY="36.0" prefHeight="17.0" prefWidth="148.0" promptText="sláðu inn bókunarnúmer" />
       <Text layoutX="701.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leita af bókun" />
       <TextField id="inputField" fx:id="textInput" layoutX="203.0" layoutY="150.0" onAction="#search" onInputMethodTextChanged="#search" prefHeight="25.0" prefWidth="468.0" AnchorPane.topAnchor="150.0" />
