@@ -1,6 +1,14 @@
 package hi.hotel.vinnsla;
 
 import java.util.ArrayList;
+/**********************************************************
+ *
+ *   Hópur: 2H
+ *
+ *   Lýsing: Klasi sem geymir upplýsingar um hvert hótel
+ *   í forritinu.
+ *
+ **********************************************************/
 
 public class Hotel {
     private ArrayList<Herbergi> herbergi;
@@ -21,6 +29,10 @@ public class Hotel {
         this.breakfastIncluded = breakfastIncluded;
     }
 
+    /**
+     * Skilar true ef matur er innifalinn í verðinu á hótelinu, annars false
+     * @return
+     */
     public boolean isBreakfastIncluded() {
         return breakfastIncluded;
     }

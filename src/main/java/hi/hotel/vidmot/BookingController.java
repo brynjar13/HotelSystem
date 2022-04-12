@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -19,7 +18,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
-
+/**********************************************************
+ *
+ *   Hópur: 2H
+ *
+ *   Lýsing: Controllerklasinn fyrir bókunarsíðu forritsins,
+ *   tengt við bokun.fxml.
+ *
+ **********************************************************/
 public class BookingController implements Initializable {
 
     @FXML

@@ -1,9 +1,15 @@
 package hi.hotel.vinnsla;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.UUID;
-
+/**********************************************************
+ *
+ *   Hópur: 2H
+ *
+ *   Lýsing: Klasi sem geymir upplýsingar um hverja bókun
+ *   í forritinu.
+ *
+ **********************************************************/
 public class Bokun {
     private int hotelId;
     private int herbergiId;

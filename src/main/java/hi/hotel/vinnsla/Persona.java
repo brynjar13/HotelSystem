@@ -1,7 +1,14 @@
 package hi.hotel.vinnsla;
 
 import java.util.UUID;
-
+/**********************************************************
+ *
+ *   Hópur: 2H
+ *
+ *   Lýsing: Klasi sem geymir upplýsingar um hvern gest í bókun
+ *   í forritinu.
+ *
+ **********************************************************/
 public class Persona {
     private String nafn;
     private String email;

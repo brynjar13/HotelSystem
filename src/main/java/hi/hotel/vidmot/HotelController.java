@@ -22,7 +22,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
-
+/**********************************************************
+ *
+ *   Hópur: 2H
+ *
+ *   Lýsing: Controllerklasinn fyrir opnunarsíðu
+ *   verkefnsins, tengt við frontpage.fxml.
+ *
+ **********************************************************/
 public class HotelController implements Initializable {
     HotelFile hotelFile;
     ArrayList<Hotel> hotels;
@@ -49,6 +56,8 @@ public class HotelController implements Initializable {
     private ChoiceBox searchByAreaChoiceBox;
     @FXML
     private ChoiceBox breakfastChoiceBox;
+    @FXML
+    private ChoiceBox fxRequiredSpace;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,12 +79,14 @@ public class HotelController implements Initializable {
 
         searchByTownChoiceBox.setItems(choiceBoxTownItems);
         searchByAreaChoiceBox.setItems(choiceBoxAreaItems);
-        breakfastChoiceBox.setItems(FXCollections.observableArrayList("Morgunmatur innifalinn", "Já", "Nei"));
+        breakfastChoiceBox.setItems(FXCollections.observableArrayList("", "Já", "Nei"));
+        fxRequiredSpace.setItems(FXCollections.observableArrayList(1,2,3,4));
 
     }
 
     /**
-     * Filterum hótel eftir inputtinu í textfieldinu
+     * Filterum hótel eftir inputtinu í textfieldinu, og/eða inputtunum í choiceboxunum
+     * Sýnum svo hótel sem uppfylla leitarskilyrðin
      * @param ActionEvent
      */
     public void search(ActionEvent ActionEvent)  {
@@ -86,6 +97,10 @@ public class HotelController implements Initializable {
         }
         String townSelected = null;
         String areaSelected = null;
+        int spaceFor = 0;
+        if(fxRequiredSpace.getValue() != null) {
+            spaceFor = (int) fxRequiredSpace.getValue();
+        }
         if(searchByTownChoiceBox.getValue() != null && searchByTownChoiceBox.getValue() != "") {
             townSelected = searchByTownChoiceBox.getValue().toString();
         }
@@ -94,7 +109,7 @@ public class HotelController implements Initializable {
         }
         ArrayList<Hotel> tempHotelList = new ArrayList<>();
         String input = textInput.getText();
-        boolean hasOpenRoom = false;
+        int availableRooms = 0;
         for(Hotel h: hotels) {
             if(h.getName().contains(input)) {
                 if((townSelected!= null) &&!townSelected.equals(h.getTown())) {
@@ -103,7 +118,7 @@ public class HotelController implements Initializable {
                 if((areaSelected!= null) && (!areaSelected.equals(h.getArea()))) {
                     continue;
                 }
-                if(breakfastChoiceBox.getValue() != null && !breakfastChoiceBox.getValue().toString().equals("Morgunmatur innifalinn"))  {
+                if(breakfastChoiceBox.getValue() != null && !breakfastChoiceBox.getValue().toString().equals(""))  {
                     boolean bool;
                     if(breakfastChoiceBox.getValue().toString().equals("Já")) {
                         bool = true;
@@ -115,27 +130,36 @@ public class HotelController implements Initializable {
                     }
                 }
                 for(int i = 0; i<(h.getNumberOfRooms()); i++) {
+                    System.out.println(h.getHerbergi(i));
                     if (h.getHerbergi(i).hasDateOpen(checkIn, checkOut)) {
-                        hasOpenRoom = true;
+                        availableRooms++;
+                    }
+                    if(!(h.getHerbergi(i).getSpaceFor() >= spaceFor)) {
+                        availableRooms--;
                     }
                 }
-                if(hasOpenRoom) {
+                if(availableRooms >0) {
                     tempHotelList.add(h);
                 }
-                hasOpenRoom = false;
+                availableRooms = 0;
             }
         }
         ObservableList<Hotel> oHotelList = FXCollections.observableArrayList(tempHotelList);
         hotelList.setItems(oHotelList);
     }
 
+    /**
+     * Fall sem tekur upplýsingar um hótel sem var smellt á og opnar annað view
+     * þar sem hægt er að framkvæma bókun
+     * @param e
+     * @throws IOException
+     */
     @FXML
     public void clickHotel(MouseEvent e) throws IOException {
         if (!e.getTarget().getClass().getName().toString().equals("com.sun.javafx.scene.control.LabeledText")) {
             e.consume();
             return;
         }
-        int spaceFor = 0;
         Text hotel = (Text) e.getTarget();
         Hotel hotelClicked = null;
         for (Hotel rightHotel :
@@ -152,6 +176,9 @@ public class HotelController implements Initializable {
         HotelViewController hvc = fxmlLoader.getController();
         hvc.setHotelName(hotelInfoName);
         hvc.setHotelId(hotelInfoId);
+        if(fxRequiredSpace.getValue() != null) {
+            hvc.setNumOfGuests((Integer) fxRequiredSpace.getValue());
+        }
         hvc.setHerbergis(hotelInfoHerbergi);
         hvc.setHotel(hotelClicked);
         hvc.setDatesChosen(checkInDate.getValue(),checkOutDate.getValue());
@@ -161,7 +188,14 @@ public class HotelController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void makeBooking(ActionEvent ActionEvent) throws IOException {
+
+    /**
+     * Fall sem tekur við bókunarnúmeri og opnar annað view með
+     * bókuninni með því númeri, ef hún er til.
+     * @param ActionEvent
+     * @throws IOException
+     */
+    public void searchForBooking(ActionEvent ActionEvent) throws IOException {
         String bookingNumber = bookingSearch.getText();
         UUID bookingNrtoUUID;
         try {

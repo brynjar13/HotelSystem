@@ -27,7 +27,14 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
-
+/**********************************************************
+ *
+ *   Hópur: 2H
+ *
+ *   Lýsing: Controllerklasinn fyrir hótelview síðu
+ *   verkefnsins, tengt við hotel.fxml.
+ *
+ **********************************************************/
 public class HotelViewController implements Initializable {
     @FXML
     private Label fxPrice;
@@ -53,10 +60,13 @@ public class HotelViewController implements Initializable {
     private Button fxBokun;
     @FXML
     private ChoiceBox fxHerbergi;
+    @FXML
+    private Label fxnumOfGuests;
     private int hotelId;
     private Hotel hotel;
     private ArrayList<Herbergi> herbergis;
     private HotelFile hotelFile = new HotelFile();
+    private int numOfGuests;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,12 +81,19 @@ public class HotelViewController implements Initializable {
     public void setHerbergis(ArrayList<Herbergi> h) {
         this.herbergis = h;
         ObservableList<String> oherbergiList = FXCollections.observableArrayList();
-        for (Herbergi herbergi:
-             h) {
-            oherbergiList.add(herbergi.getTypa());
+        for (Herbergi herbergi: h) {
+            System.out.println("num of guests: "+ numOfGuests);
+            if(herbergi.getSpaceFor() >= numOfGuests) {
+                oherbergiList.add(herbergi.getTypa());
+            }
         }
 
         fxHerbergi.setItems(oherbergiList);
+    }
+
+    public void setNumOfGuests(int numOfGuests) {
+        fxnumOfGuests.setText(Integer.toString(numOfGuests));
+        this.numOfGuests = numOfGuests;
     }
 
     public void setHotelId(int id) {
@@ -107,6 +124,11 @@ public class HotelViewController implements Initializable {
         fxTotalCost.setText(totalCost+ " kr.");
     }
 
+    /**
+     * Fall sem útfærir virkni á takka til að geta farið aftur í opnunarsíðu forritsins.
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void backToHotelSelection(ActionEvent e) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("frontpage.fxml"));
@@ -119,7 +141,12 @@ public class HotelViewController implements Initializable {
         stage.show();
     }
 
-
+    /**
+     * Fall sem tekur við innskráðum upplýsingum á síðunni og býr til bókun
+     * með þeim.
+     * @param event
+     * @throws IOException
+     */
     public void geraBokun(ActionEvent event) throws IOException {
         UUID uuid = UUID.randomUUID();
         String name = fxName.getText();
@@ -145,6 +172,14 @@ public class HotelViewController implements Initializable {
         backToHotelSelection(event);
     }
 
+    /**
+     * Skrifar upplýsingar um gest í Personur.txt, eftir að bókun er framkvæmd.
+     * @param name
+     * @param email
+     * @param kennitala
+     * @param uuid
+     * @throws IOException
+     */
     private void writePerson(String name, String email, String kennitala, UUID uuid) throws IOException {
         File file = new File("Personur.txt");
         FileWriter fileWriter = new FileWriter(file, true);
@@ -154,6 +189,15 @@ public class HotelViewController implements Initializable {
         writer.close();
     }
 
+    /**
+     * Skrifar upplýsingar um bókun í Bookings.txt, eftir að bókun er framkvæmd.
+     * @param hotelId
+     * @param herbergiId
+     * @param checkIn
+     * @param checkOut
+     * @param uuid
+     * @throws IOException
+     */
     private void writeBooking(int hotelId, int herbergiId, LocalDate checkIn, LocalDate checkOut, UUID uuid) throws IOException {
         System.out.println("writing..");
         File file = new File("Bookings.txt");
@@ -164,10 +208,18 @@ public class HotelViewController implements Initializable {
         writer.close();
     }
 
+    /**
+     * Bætir gest við nýgerða bókun.
+     */
     private void setPersonurInBooking() {
         hotelFile.makeBookings();
     }
 
+    /**
+     * Sýnir upplýsingar um valið herbergi sem valið úr
+     * Choiceboxinu með fxid: fxHerbergi
+     * @param actionEvent
+     */
     public void setRoomInfo(ActionEvent actionEvent) {
         for(Herbergi herbergi : hotel.getHerbergis()) {
             if(herbergi.getTypa() == fxHerbergi.getValue()) {
