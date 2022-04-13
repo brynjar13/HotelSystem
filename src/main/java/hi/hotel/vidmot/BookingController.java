@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,6 +33,19 @@ public class BookingController implements Initializable {
     private Button fxEydaBokun;
     @FXML
     private Button fxBack;
+    @FXML
+    private Label fxBokunarNumer;
+    @FXML
+    private Label fxCheckin;
+    @FXML
+    private Label fxCheckout;
+    @FXML
+    private Label fxName;
+    @FXML
+    private Label fxEmail;
+    @FXML
+    private Label fxKennitala;
+
     private UUID bokunId;
     private HotelFile hotelFile = new HotelFile();
     private ArrayList<Bokun> bokanir;
@@ -44,6 +58,24 @@ public class BookingController implements Initializable {
 
     public void setBokunId(UUID uuid) {
         bokunId = uuid;
+        fxBokunarNumer.setText(String.valueOf(uuid));
+        setThings();
+    }
+
+    private void setThings() {
+        for (Bokun b: bokanir) {
+            if (b.getBookingnumber().equals(bokunId)) {
+                fxCheckin.setText(String.valueOf(b.getCheckIn()));
+                fxCheckout.setText(String.valueOf(b.getCheckOut()));
+            }
+        }
+        for (Persona p: personas) {
+            if (p.getBookingId().equals(bokunId)) {
+                fxName.setText(p.getNafn());
+                fxEmail.setText(p.getEmail());
+                fxKennitala.setText(p.getKennitala());
+            }
+        }
     }
 
 
@@ -96,7 +128,7 @@ public class BookingController implements Initializable {
 
     public void backToMenu(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("frontpage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         HotelController hc =  fxmlLoader.getController();
         Stage stage = (Stage) fxEydaBokun.getScene().getWindow();
         scene.setUserData(fxmlLoader.getController());

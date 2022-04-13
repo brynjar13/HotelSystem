@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hi.hotel.vidmot.HotelController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hi.hotel.vidmot.HotelController">
    <children>
       <Button fx:id="searchButton" layoutX="668.0" layoutY="150.0" mnemonicParsing="false" onAction="#search" text="Leita" />
       <Button fx:id="searchBookingBtn" layoutX="812.0" layoutY="36.0" mnemonicParsing="false" onAction="#searchForBooking" text="Leita" />
