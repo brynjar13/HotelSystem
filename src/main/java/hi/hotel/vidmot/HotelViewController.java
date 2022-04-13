@@ -82,7 +82,6 @@ public class HotelViewController implements Initializable {
         this.herbergis = h;
         ObservableList<String> oherbergiList = FXCollections.observableArrayList();
         for (Herbergi herbergi: h) {
-            System.out.println("num of guests: "+ numOfGuests);
             if(herbergi.getSpaceFor() >= numOfGuests) {
                 oherbergiList.add(herbergi.getTypa());
             }
@@ -199,7 +198,6 @@ public class HotelViewController implements Initializable {
      * @throws IOException
      */
     private void writeBooking(int hotelId, int herbergiId, LocalDate checkIn, LocalDate checkOut, UUID uuid) throws IOException {
-        System.out.println("writing..");
         File file = new File("Bookings.txt");
         FileWriter fileWriter = new FileWriter(file, true);
         BufferedWriter writer = new BufferedWriter(fileWriter);

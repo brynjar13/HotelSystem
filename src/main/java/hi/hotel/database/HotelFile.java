@@ -77,7 +77,6 @@ public class HotelFile {
                     hotelherbergi.add(herbergis.get(i));
                 }
             }
-            System.out.println(hotelherbergi.size());
             hotels.add(new Hotel(hotelherbergi ,Integer.parseInt(kol[0]),kol[1], Integer.parseInt(kol[2]), kol[3], kol[4], Boolean.parseBoolean(kol[5])));
         }
     }
@@ -91,8 +90,7 @@ public class HotelFile {
         Scanner scanner = null;
         try {
             scanner = new Scanner(file).useDelimiter("\r\n");
-        } catch (
-                FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         while (scanner.hasNext()) {

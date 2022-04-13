@@ -27,5 +27,6 @@
       <Label layoutX="22.0" layoutY="250.0" text="Morgumatur innifalinn:" />
       <ChoiceBox fx:id="fxRequiredSpace" layoutX="24.0" layoutY="100.0" prefWidth="150.0" />
       <Label layoutX="24.0" layoutY="75.0" text="Fjöldi gesta:" />
+      <Label fx:id="fxValidDates" layoutX="332.0" layoutY="133.0" text="Vinsamlegast settu inn gildar dagsetningar " />
    </children>
 </AnchorPane>

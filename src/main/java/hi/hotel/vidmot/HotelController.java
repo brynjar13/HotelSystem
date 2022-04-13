@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -58,6 +59,8 @@ public class HotelController implements Initializable {
     private ChoiceBox breakfastChoiceBox;
     @FXML
     private ChoiceBox fxRequiredSpace;
+    @FXML
+    private Label fxValidDates;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,6 +84,7 @@ public class HotelController implements Initializable {
         searchByAreaChoiceBox.setItems(choiceBoxAreaItems);
         breakfastChoiceBox.setItems(FXCollections.observableArrayList("", "Já", "Nei"));
         fxRequiredSpace.setItems(FXCollections.observableArrayList("",1,2,3,4));
+        fxValidDates.setVisible(false);
 
     }
 
@@ -90,9 +94,12 @@ public class HotelController implements Initializable {
      * @param ActionEvent
      */
     public void search(ActionEvent ActionEvent)  {
+        fxValidDates.setVisible(false);
         LocalDate checkIn = checkInDate.getValue();
         LocalDate checkOut = checkOutDate.getValue();
-        if(checkIn == null || checkOut == null) {
+        boolean isValidDates = isValidDatesChosen();
+        if(!isValidDates) {
+            fxValidDates.setVisible(true);
             return;
         }
         String townSelected = null;
@@ -120,11 +127,7 @@ public class HotelController implements Initializable {
                 }
                 if(breakfastChoiceBox.getValue() != null && !breakfastChoiceBox.getValue().toString().equals(""))  {
                     boolean bool;
-                    if(breakfastChoiceBox.getValue().toString().equals("Já")) {
-                        bool = true;
-                    }else {
-                        bool = false;
-                    }
+                    bool = breakfastChoiceBox.getValue().toString().equals("Já");
                     if(bool != h.isBreakfastIncluded()) {
                         continue;
                     }
@@ -148,6 +151,24 @@ public class HotelController implements Initializable {
     }
 
     /**
+     * Athugar hvort dagsetningar valdar í Datepickerunum séu gildar.
+     * @return
+     */
+    public boolean isValidDatesChosen() {
+        LocalDate checkIn = checkInDate.getValue();
+        LocalDate checkOut = checkOutDate.getValue();
+        if(checkIn == null || checkOut == null) {
+            return false;
+        }
+        LocalDate cin = checkInDate.getValue();
+        LocalDate cout = checkOutDate.getValue();
+        long days= ChronoUnit.DAYS.between(cin,cout);
+        if(days < 1) {
+            return false;
+        }
+        return true;
+    }
+    /**
      * Fall sem tekur upplýsingar um hótel sem var smellt á og opnar annað view
      * þar sem hægt er að framkvæma bókun
      * @param e
@@ -155,7 +176,7 @@ public class HotelController implements Initializable {
      */
     @FXML
     public void clickHotel(MouseEvent e) throws IOException {
-        if (!e.getTarget().getClass().getName().toString().equals("com.sun.javafx.scene.control.LabeledText")) {
+        if (!e.getTarget().getClass().getName().equals("com.sun.javafx.scene.control.LabeledText")) {
             e.consume();
             return;
         }
@@ -191,10 +212,9 @@ public class HotelController implements Initializable {
     /**
      * Fall sem tekur við bókunarnúmeri og opnar annað view með
      * bókuninni með því númeri, ef hún er til.
-     * @param ActionEvent
      * @throws IOException
      */
-    public void searchForBooking(ActionEvent ActionEvent) throws IOException {
+    public void searchForBooking() throws IOException {
         String bookingNumber = bookingSearch.getText();
         UUID bookingNrtoUUID;
         try {
@@ -206,15 +226,17 @@ public class HotelController implements Initializable {
 
         for(Bokun b: bokanir) {
             if(b.getBookingnumber().equals(bookingNrtoUUID)) {
+                FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("bokun.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+                BookingController sc =  fxmlLoader.getController();
+                Stage stage = (Stage) searchBookingBtn.getScene().getWindow();
+                sc.setBokunId(bookingNrtoUUID);
+                stage.setTitle("Booking");
+                stage.setScene(scene);
+                stage.show();
+                return;
             }
         }
-        FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("bokun.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
-        BookingController sc =  fxmlLoader.getController();
-        Stage stage = (Stage) searchBookingBtn.getScene().getWindow();
-        sc.setBokunId(bookingNrtoUUID);
-        stage.setTitle("Booking");
-        stage.setScene(scene);
-        stage.show();
+
     }
 }
