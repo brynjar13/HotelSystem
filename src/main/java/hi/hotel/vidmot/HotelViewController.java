@@ -168,6 +168,9 @@ public class HotelViewController implements Initializable {
 
         setPersonurInBooking();
 
+        BokunDialog bd = new BokunDialog();
+        bd.bokunMottekin(String.valueOf(uuid));
+
         backToHotelSelection(event);
     }
 
