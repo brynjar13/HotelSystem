@@ -131,7 +131,7 @@ public class HotelViewController implements Initializable {
     @FXML
     private void backToHotelSelection(ActionEvent e) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("frontpage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         HotelController hc =  fxmlLoader.getController();
         Stage stage = (Stage) fxHotelName.getScene().getWindow();
         scene.setUserData(fxmlLoader.getController());
