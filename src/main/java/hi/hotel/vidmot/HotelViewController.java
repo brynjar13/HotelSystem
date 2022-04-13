@@ -61,7 +61,13 @@ public class HotelViewController implements Initializable {
     @FXML
     private ChoiceBox fxHerbergi;
     @FXML
+    private Label fxHotelPhonenumber;
+    @FXML
+    private Label fxHotelEmail;
+    @FXML
     private Label fxnumOfGuests;
+    @FXML
+    private Label fxBreakfastIncluded;
     private int hotelId;
     private Hotel hotel;
     private ArrayList<Herbergi> herbergis;
@@ -89,7 +95,10 @@ public class HotelViewController implements Initializable {
 
         fxHerbergi.setItems(oherbergiList);
     }
-
+    public void setHotelContactInfo(String number, String email) {
+        fxHotelPhonenumber.setText(number);
+        fxHotelEmail.setText(email);
+    }
     public void setNumOfGuests(int numOfGuests) {
         fxnumOfGuests.setText(Integer.toString(numOfGuests));
         this.numOfGuests = numOfGuests;
@@ -121,6 +130,9 @@ public class HotelViewController implements Initializable {
         long days= ChronoUnit.DAYS.between(cin,cout);
         int totalCost = (int)days * Integer.parseInt(fxPrice.getText().replace(" kr.", ""));
         fxTotalCost.setText(totalCost+ " kr.");
+    }
+    public void setBreakfastIncluded(String included) {
+        fxBreakfastIncluded.setText(included);
     }
 
     /**

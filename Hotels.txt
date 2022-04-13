@@ -1,10 +1,10 @@
-1,Hótel Edda Isafjörður,3,Ísafjörður,Vestfjörður,true
-2,Hótel Borg,3,Reykjavík,Höfuðborgarsvæðið,false
-3,Grand Hótel,3,Reykjavík,Höfuðborgarsvæðið,false
-4,Hótel Edda Akureyri,3,Akureyri,Norðurland,false
-5,Hótel Egilsstaðir,3,Egilsstaðir,Austurland,true
-6,Hótel Múli,3,Reykjavík,Höfuðborgarsvæðið,true
-7,Hótel Kea,3,Akureyri,Norðurland,false
-8,Ísafjörður Hostel,3,Ísafjörður,Vestfjörður,true
-9,Hafaldan Hostel,3,Seyðisfjörður,Austurland,false
-10,Fosshotel Húsavík,3,Húsavík,Norðurland,true
+1,Hótel Edda Isafjörður,3,Ísafjörður,Vestfjörður,true,3452413,hoteleddais@hotel.is
+2,Hótel Borg,3,Reykjavík,Höfuðborgarsvæðið,false,4565345,hotelborg@hotel.is
+3,Grand Hótel,3,Reykjavík,Höfuðborgarsvæðið,false,7653453,grandhotel@hotel.is
+4,Hótel Edda Akureyri,3,Akureyri,Norðurland,false,1234567,hoteleddaak@hotel.is
+5,Hótel Egilsstaðir,3,Egilsstaðir,Austurland,true,6783452,hotelegilsstadir@hotel.is
+6,Hótel Múli,3,Reykjavík,Höfuðborgarsvæðið,true,2345434,hotelmuli@hotel.is
+7,Hótel Kea,3,Akureyri,Norðurland,false,3456545,hotelkea@hotel.is
+8,Ísafjörður Hostel,3,Ísafjörður,Vestfjörður,true,4562342,isafjhostel@hostel.is
+9,Hafaldan Hostel,3,Seyðisfjörður,Austurland,false,8582424,hafaldanhostel@hotel.is
+10,Fosshotel Húsavík,3,Húsavík,Norðurland,true,4552211,fosshotel@hotel.is

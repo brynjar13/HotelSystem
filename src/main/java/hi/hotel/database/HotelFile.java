@@ -77,7 +77,7 @@ public class HotelFile {
                     hotelherbergi.add(herbergis.get(i));
                 }
             }
-            hotels.add(new Hotel(hotelherbergi ,Integer.parseInt(kol[0]),kol[1], Integer.parseInt(kol[2]), kol[3], kol[4], Boolean.parseBoolean(kol[5])));
+            hotels.add(new Hotel(hotelherbergi ,Integer.parseInt(kol[0]),kol[1], Integer.parseInt(kol[2]), kol[3], kol[4], Boolean.parseBoolean(kol[5]), kol[6], kol[7]));
         }
     }
     /**

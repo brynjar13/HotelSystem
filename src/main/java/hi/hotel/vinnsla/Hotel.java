@@ -18,8 +18,10 @@ public class Hotel {
     private String town;
     private String area;
     private boolean breakfastIncluded;
+    private String contactNumber;
+    private String contactEmail;
 
-    public Hotel(ArrayList<Herbergi> herbergi, int id, String name, int numberOfRooms, String town, String area, boolean breakfastIncluded) {
+    public Hotel(ArrayList<Herbergi> herbergi, int id, String name, int numberOfRooms, String town, String area, boolean breakfastIncluded, String contactnumber, String contactEmail) {
         this.herbergi = herbergi;
         this.id = id;
         this.name = name;
@@ -27,6 +29,8 @@ public class Hotel {
         this.town = town;
         this.area =area;
         this.breakfastIncluded = breakfastIncluded;
+        this.contactNumber = contactnumber;
+        this.contactEmail = contactEmail;
     }
 
     /**
@@ -35,6 +39,14 @@ public class Hotel {
      */
     public boolean isBreakfastIncluded() {
         return breakfastIncluded;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
     }
 
     public Herbergi getHerbergi(int i) {
