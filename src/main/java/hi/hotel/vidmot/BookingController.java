@@ -2,6 +2,8 @@ package hi.hotel.vidmot;
 
 import hi.hotel.database.HotelFile;
 import hi.hotel.vinnsla.Bokun;
+import hi.hotel.vinnsla.Herbergi;
+import hi.hotel.vinnsla.Hotel;
 import hi.hotel.vinnsla.Persona;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,6 +47,12 @@ public class BookingController implements Initializable {
     private Label fxEmail;
     @FXML
     private Label fxKennitala;
+    @FXML
+    private Label fxHerbergi;
+    @FXML
+    private Label fxMatur;
+    @FXML
+    private Label fxHotel;
 
     private UUID bokunId;
     private HotelFile hotelFile = new HotelFile();
@@ -58,15 +66,19 @@ public class BookingController implements Initializable {
 
     public void setBokunId(UUID uuid) {
         bokunId = uuid;
-        fxBokunarNumer.setText(String.valueOf(uuid));
+        fxBokunarNumer.setText("Bókun nr: " + String.valueOf(uuid));
         setThings();
     }
 
     private void setThings() {
+        int heid = -1;
+        int hid = -1;
         for (Bokun b: bokanir) {
             if (b.getBookingnumber().equals(bokunId)) {
                 fxCheckin.setText(String.valueOf(b.getCheckIn()));
                 fxCheckout.setText(String.valueOf(b.getCheckOut()));
+                heid = b.getHerbergi();
+                hid = b.getHotelId();
             }
         }
         for (Persona p: personas) {
@@ -74,6 +86,21 @@ public class BookingController implements Initializable {
                 fxName.setText(p.getNafn());
                 fxEmail.setText(p.getEmail());
                 fxKennitala.setText(p.getKennitala());
+            }
+        }
+        for (Herbergi h: hotelFile.herbergis) {
+            if (h.getId() == hid) {
+                fxHerbergi.setText(h.getTypa());
+            }
+        }
+        for (Hotel h: hotelFile.hotels) {
+            if (h.getId() == heid) {
+                if (h.isBreakfastIncluded()) {
+                    fxMatur.setText("Já");
+                } else {
+                    fxMatur.setText("Nei");
+                }
+                fxHotel.setText(h.getName());
             }
         }
     }

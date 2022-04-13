@@ -7,8 +7,8 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hi.hotel.vidmot.BookingController">
     <children>
-        <Button fx:id="fxEydaBokun" layoutX="248.0" layoutY="148.0" mnemonicParsing="false" onAction="#eydaBokun" text="Eyða bókun" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="600.0" />
-      <Button fx:id="fxBack" mnemonicParsing="false" onAction="#backToMenu" text="Hætta við" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <Button fx:id="fxEydaBokun" layoutX="248.0" layoutY="148.0" mnemonicParsing="false" onAction="#eydaBokun" text="Eyða bókun" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="500.0" />
+      <Button fx:id="fxBack" mnemonicParsing="false" onAction="#backToMenu" text="Hætta við" AnchorPane.leftAnchor="432.0" AnchorPane.topAnchor="500.0" />
       <Label fx:id="fxBokunarNumer" alignment="CENTER" layoutX="322.0" layoutY="63.0" text="Bókunarnúmer" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
          <font>
             <Font size="18.0" />
@@ -34,5 +34,29 @@
       <Label fx:id="fxName" layoutX="502.0" layoutY="200.0" text="Label" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="200.0" />
       <Label fx:id="fxEmail" layoutX="500.0" layoutY="250.0" text="Label" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="250.0" />
       <Label fx:id="fxKennitala" layoutX="514.0" layoutY="300.0" text="Label" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="300.0" />
+      <Label layoutX="66.0" layoutY="342.0" text="Herbergi:" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="fxHerbergi" layoutX="163.0" layoutY="402.0" text="Label" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="500.0" layoutY="402.0" text="Morgunmatur innifalinn:" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="fxMatur" layoutX="658.0" layoutY="402.0" text="Label" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="fxHotel" alignment="CENTER" layoutX="322.0" layoutY="106.0" text="Label" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
