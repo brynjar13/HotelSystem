@@ -192,7 +192,7 @@ public class HotelController implements Initializable {
             }
         }
         FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("hotel.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 700);
         HotelViewController hvc = fxmlLoader.getController();
         hvc.setHotelName(hotelInfoName);
         hvc.setHotelId(hotelInfoId);
@@ -202,6 +202,13 @@ public class HotelController implements Initializable {
         hvc.setHerbergis(hotelInfoHerbergi);
         hvc.setHotel(hotelClicked);
         hvc.setDatesChosen(checkInDate.getValue(),checkOutDate.getValue());
+        hvc.setHotelContactInfo(hotelClicked.getContactNumber(), hotelClicked.getContactEmail());
+        if(hotelClicked.isBreakfastIncluded()) {
+            hvc.setBreakfastIncluded("Já");
+        }else {
+            hvc.setBreakfastIncluded("Nei");
+        }
+
         Stage stage = (Stage) hotelList.getScene().getWindow();
         scene.setUserData(fxmlLoader.getController());
         stage.setTitle("Hotel");
