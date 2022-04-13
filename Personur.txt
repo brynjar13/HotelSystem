@@ -9,3 +9,9 @@ wa,ds,3434,e57abef5-7f1b-4a88-a471-a17c93c24fda
 sad,asad,asdsd,b4deffa8-b5c9-454c-bd6c-758f2fa37340
 Test,test@geg.is,2342342,b639a324-3c9b-4b50-971c-9f312ab04f5e
 Hermnn,gerg@exma.is,234234,10c08654-1037-4c6f-8ea2-76b8e154171d
+Hermann,Hermann@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120004
+Beta,betab@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120012
+Matt,matt@example.is,2345678,052182e2-b67f-11ec-b909-0242ac12004
+Ólafur,olli@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120022
+Orri,orrinn@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120022
+Helga,Hlga@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120025
