@@ -6,3 +6,4 @@ Brynjar,binni@email.is,1020304050,2efd2b37-2279-4b76-949e-d8ce52ea16be
 Brynjar,huhu,1039029448,be822926-8986-4fa6-9b30-981ffff02066
 gg,gg,gg,75a3f33e-ef11-44e7-9e9e-51ae676f0e43
 wa,ds,3434,e57abef5-7f1b-4a88-a471-a17c93c24fda
+sad,asad,asdsd,b4deffa8-b5c9-454c-bd6c-758f2fa37340
