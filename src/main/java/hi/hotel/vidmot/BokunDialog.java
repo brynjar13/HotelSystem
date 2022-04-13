@@ -28,7 +28,7 @@ public class BokunDialog extends DialogPane {
     public boolean bokunMottekin(String bokunarNumer) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(this);
-        fxBokunarNumer.setText("bókunarnúmerið þitt er: " + bokunarNumer);
+        fxBokunarNumer.setText("Bókunarnúmerið þitt er: " + bokunarNumer);
         Optional<ButtonType> utkoma = dialog.showAndWait();
 
         if (utkoma.isPresent() && utkoma.get().getButtonData() == ButtonBar.ButtonData.OK_DONE) {

@@ -7,3 +7,5 @@ Brynjar,huhu,1039029448,be822926-8986-4fa6-9b30-981ffff02066
 gg,gg,gg,75a3f33e-ef11-44e7-9e9e-51ae676f0e43
 wa,ds,3434,e57abef5-7f1b-4a88-a471-a17c93c24fda
 sad,asad,asdsd,b4deffa8-b5c9-454c-bd6c-758f2fa37340
+Test,test@geg.is,2342342,b639a324-3c9b-4b50-971c-9f312ab04f5e
+Hermnn,gerg@exma.is,234234,10c08654-1037-4c6f-8ea2-76b8e154171d
