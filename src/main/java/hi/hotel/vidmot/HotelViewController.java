@@ -1,6 +1,7 @@
 package hi.hotel.vidmot;
 
 import hi.hotel.database.HotelFile;
+import hi.hotel.vinnsla.Booking;
 import hi.hotel.vinnsla.Room;
 import hi.hotel.vinnsla.Hotel;
 import javafx.collections.FXCollections;
@@ -71,6 +72,8 @@ public class HotelViewController implements Initializable {
     private ArrayList<Room> rooms;
     private HotelFile hotelFile = new HotelFile();
     private int numOfGuests;
+    private LocalDate checkInCheck = null;
+    private LocalDate checkOutCheck = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,12 +85,22 @@ public class HotelViewController implements Initializable {
         fxHotelName.setText(name);
     }
 
-    public void setHerbergis(ArrayList<Room> h) {
+    public void setHerbergis(ArrayList<Room> h, LocalDate checkIn, LocalDate checkOut) {
         this.rooms = h;
         ObservableList<String> oherbergiList = FXCollections.observableArrayList();
         for (Room room : h) {
             if(room.getSpaceFor() >= numOfGuests) {
                 oherbergiList.add(room.getTypa());
+            }
+        }
+
+        for (Hotel hotel: hotelFile.hotels) {
+            if (hotel.getId() == hotelId) {
+                for (Room r: hotel.getHerbergis()) {
+                    if (!(r.hasDateOpen(checkIn, checkOut))) {
+                        oherbergiList.remove(r.getTypa());
+                    }
+                }
             }
         }
 
@@ -115,6 +128,8 @@ public class HotelViewController implements Initializable {
     public void setDatesChosen(LocalDate checkIn, LocalDate checkOut) {
         fxCheckinChosen.setText(checkIn.toString());
         fxCheckoutChosen.setText(checkOut.toString());
+        checkInCheck = checkIn;
+        checkOutCheck = checkOut;
     }
     public void setPrice(int price) {
         fxPrice.setText(price+ " kr.");
@@ -171,6 +186,13 @@ public class HotelViewController implements Initializable {
             if (h.getTypa() == herbergiName) {
                 Room room = h;
                 herbergiId = room.getId();
+            }
+        }
+        Booking newBooking = new Booking(hotelId, herbergiId,null, checkin, checkout, uuid);
+        for (Room rh: rooms) {
+            if (rh.getHotelId() == hotelId) {
+                rh.addBooking(newBooking);
+                break;
             }
         }
         writeBooking(hotelId, herbergiId, checkin, checkout, uuid);

@@ -199,7 +199,7 @@ public class HotelController implements Initializable {
         if(fxRequiredSpace.getValue() != null && fxRequiredSpace.getValue() != "") {
             hvc.setNumOfGuests((Integer) fxRequiredSpace.getValue());
         }
-        hvc.setHerbergis(hotelInfoRoom);
+        hvc.setHerbergis(hotelInfoRoom, checkInDate.getValue(), checkOutDate.getValue());
         hvc.setHotel(hotelClicked);
         hvc.setDatesChosen(checkInDate.getValue(),checkOutDate.getValue());
         hvc.setHotelContactInfo(hotelClicked.getContactNumber(), hotelClicked.getContactEmail());
