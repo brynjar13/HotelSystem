@@ -37,37 +37,21 @@ public class Booking {
         return herbergiId;
     }
 
-    public void setHerbergi(int herbergiId) {
-        this.herbergiId = herbergiId;
-    }
-
-    public Person getPersona() {
-        return person;
-    }
 
     public UUID getBookingnumber() {
         return bookingnumber;
     }
 
-    public void setPersona(Person person) {
-        this.person = person;
-    }
 
     public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(LocalDate checkIn) {
-        this.checkIn = checkIn;
-    }
 
     public LocalDate getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(LocalDate checkOut) {
-        this.checkOut = checkOut;
-    }
 
     public int getHotelId() {
         return hotelId;

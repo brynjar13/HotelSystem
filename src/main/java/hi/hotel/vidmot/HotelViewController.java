@@ -1,6 +1,7 @@
 package hi.hotel.vidmot;
 
 import hi.hotel.database.HotelFile;
+import hi.hotel.vinnsla.Booking;
 import hi.hotel.vinnsla.Room;
 import hi.hotel.vinnsla.Hotel;
 import javafx.collections.FXCollections;
@@ -85,11 +86,19 @@ public class HotelViewController implements Initializable {
     public void setHerbergis(ArrayList<Room> h) {
         this.rooms = h;
         ObservableList<String> oherbergiList = FXCollections.observableArrayList();
+        boolean bookedRoom = false;
         for (Room room : h) {
-            if(room.getSpaceFor() >= numOfGuests) {
+            for(Booking b: room.getBookings()) {
+                if(b.getCheckIn().isEqual(LocalDate.parse(fxCheckinChosen.getText()))) {
+                    bookedRoom = true;
+                }
+            }
+            if(room.getSpaceFor() >= numOfGuests && !bookedRoom) {
                 oherbergiList.add(room.getTypa());
             }
+            bookedRoom = false;
         }
+
 
         fxHerbergi.setItems(oherbergiList);
     }
