@@ -10,19 +10,19 @@ import java.util.UUID;
  *   í forritinu.
  *
  **********************************************************/
-public class Bokun {
+public class Booking {
     private int hotelId;
     private int herbergiId;
-    private Persona persona;
+    private Person person;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private UUID bookingnumber;
 
 
-    public Bokun(int hotelId,int herbergiId, Persona  persona, LocalDate checkIn, LocalDate checkOut, UUID bookingnumber) {
+    public Booking(int hotelId, int herbergiId, Person person, LocalDate checkIn, LocalDate checkOut, UUID bookingnumber) {
         this.hotelId = hotelId;
         this.herbergiId = herbergiId;
-        this.persona = persona;
+        this.person = person;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         if(bookingnumber == null) {
@@ -41,16 +41,16 @@ public class Bokun {
         this.herbergiId = herbergiId;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Person getPersona() {
+        return person;
     }
 
     public UUID getBookingnumber() {
         return bookingnumber;
     }
 
-    public void setPersona(Persona  persona) {
-        this.persona = persona;
+    public void setPersona(Person person) {
+        this.person = person;
     }
 
     public LocalDate getCheckIn() {
@@ -78,7 +78,7 @@ public class Bokun {
         return "Bokun{" +
                 "hotelId=" + hotelId +
                 ", herbergi=" + herbergiId +
-                ", persona=" + persona +
+                ", persona=" + person +
                 ", checkIn=" + checkIn +
                 ", checkOut=" + checkOut +
                 '}';

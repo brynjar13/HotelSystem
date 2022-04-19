@@ -9,13 +9,13 @@ import java.util.UUID;
  *   í forritinu.
  *
  **********************************************************/
-public class Persona {
+public class Person {
     private String nafn;
     private String email;
     private String kennitala;
     private UUID bookingId;
 
-    public Persona(String nafn, String email, String kennitala, UUID bookingId) {
+    public Person(String nafn, String email, String kennitala, UUID bookingId) {
         this.nafn = nafn;
         this.email = email;
         this.kennitala = kennitala;

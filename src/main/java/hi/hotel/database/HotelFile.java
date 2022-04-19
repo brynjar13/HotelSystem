@@ -1,10 +1,10 @@
 package hi.hotel.database;
 
 
-import hi.hotel.vinnsla.Bokun;
-import hi.hotel.vinnsla.Herbergi;
+import hi.hotel.vinnsla.Booking;
+import hi.hotel.vinnsla.Room;
 import hi.hotel.vinnsla.Hotel;
-import hi.hotel.vinnsla.Persona;
+import hi.hotel.vinnsla.Person;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -22,21 +22,21 @@ import java.util.UUID;
  **********************************************************/
 public class HotelFile {
     public ArrayList<Hotel> hotels = new ArrayList<>();
-    public ArrayList<Herbergi> herbergis = new ArrayList<>();
-    public ArrayList<Bokun> bokanir = new ArrayList<>();
-    public ArrayList<Persona> personur = new ArrayList<>();
+    public ArrayList<Room> rooms = new ArrayList<>();
+    public ArrayList<Booking> bokanir = new ArrayList<>();
+    public ArrayList<Person> personur = new ArrayList<>();
 
     public HotelFile() {
         makeHotels();
     }
 
     /**
-     * Tekur upplýsingar úr herbergi.txt og býr til
+     * Tekur upplýsingar úr Rooms.txt og býr til
      * instance af Herbergi klasanum fyrir hverja línu í skránni
      */
     private void makeRooms() {
         makeBookings();
-        File file = new File("herbergi.txt");
+        File file = new File("Rooms.txt");
         Scanner scanner = null;
         try {
             scanner = new Scanner(file).useDelimiter("\r\n");
@@ -45,15 +45,15 @@ public class HotelFile {
         }
         while (scanner.hasNext()) {
             String[] kol = scanner.next().split(",");
-            ArrayList<Bokun> bokanirHerbergi= new ArrayList<>();
+            ArrayList<Booking> bokanirHerbergi= new ArrayList<>();
 
             for (int i = 0; i < bokanir.size(); i++) {
                 if (bokanir.get(i).getHerbergi() == Integer.parseInt(kol[1])) {
                     bokanirHerbergi.add(bokanir.get(i));
                 }
             }
-            Herbergi herbergi = new Herbergi(kol[0], Integer.parseInt(kol[1]), Integer.parseInt(kol[2]), bokanirHerbergi, Integer.parseInt(kol[3]), Integer.parseInt(kol[4]));
-            herbergis.add(herbergi);
+            Room room = new Room(kol[0], Integer.parseInt(kol[1]), Integer.parseInt(kol[2]), bokanirHerbergi, Integer.parseInt(kol[3]), Integer.parseInt(kol[4]));
+            rooms.add(room);
         }
     }
     /**
@@ -70,11 +70,11 @@ public class HotelFile {
             e.printStackTrace();
         }
         while (scanner.hasNext()) {
-            ArrayList<Herbergi> hotelherbergi= new ArrayList<>();
+            ArrayList<Room> hotelherbergi= new ArrayList<>();
             String[] kol = scanner.next().split(",");
-            for (int i = 0; i < herbergis.size(); i++) {
-                    if (herbergis.get(i).getHotelId() == Integer.parseInt(kol[0])) {
-                    hotelherbergi.add(herbergis.get(i));
+            for (int i = 0; i < rooms.size(); i++) {
+                    if (rooms.get(i).getHotelId() == Integer.parseInt(kol[0])) {
+                    hotelherbergi.add(rooms.get(i));
                 }
             }
             hotels.add(new Hotel(hotelherbergi ,Integer.parseInt(kol[0]),kol[1], Integer.parseInt(kol[2]), kol[3], kol[4], Boolean.parseBoolean(kol[5]), kol[6], kol[7]));
@@ -95,7 +95,7 @@ public class HotelFile {
         }
         while (scanner.hasNext()) {
             String[] kol = scanner.next().split(",");
-            Persona personInBooking= null;
+            Person personInBooking= null;
             LocalDate ci = LocalDate.parse(kol[3]);
             LocalDate co = LocalDate.parse(kol[4]);
             UUID bookingNum = UUID.fromString(kol[5]);
@@ -104,16 +104,16 @@ public class HotelFile {
                     personInBooking = personur.get(i);
                 }
             }
-            bokanir.add(new Bokun(Integer.parseInt(kol[0]), Integer.parseInt(kol[1]),personInBooking, ci,co,bookingNum));
+            bokanir.add(new Booking(Integer.parseInt(kol[0]), Integer.parseInt(kol[1]),personInBooking, ci,co,bookingNum));
         }
     }
 
     /**
-     * Tekur upplýsingar úr Personur.txt og býr til
+     * Tekur upplýsingar úr Persons.txt og býr til
      * instance af Persona klasanum fyrir hverja línu í skránni
      */
     public void makePersons() {
-        File file = new File("Personur.txt");
+        File file = new File("Persons.txt");
         Scanner scanner = null;
         try {
             scanner = new Scanner(file).useDelimiter("\r\n");
@@ -125,7 +125,7 @@ public class HotelFile {
             if(kol.length != 4) {
                 break;
             }
-            personur.add(new Persona(kol[0], kol[1], kol[2], UUID.fromString(kol[3])));
+            personur.add(new Person(kol[0], kol[1], kol[2], UUID.fromString(kol[3])));
         }
     }
 }

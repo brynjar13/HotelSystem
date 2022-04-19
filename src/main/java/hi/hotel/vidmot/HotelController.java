@@ -3,8 +3,8 @@ package hi.hotel.vidmot;
 import hi.hotel.database.HotelFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-import hi.hotel.vinnsla.Bokun;
-import hi.hotel.vinnsla.Herbergi;
+import hi.hotel.vinnsla.Booking;
+import hi.hotel.vinnsla.Room;
 import hi.hotel.vinnsla.Hotel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,9 +36,9 @@ public class HotelController implements Initializable {
     ArrayList<Hotel> hotels;
     private String hotelInfoName;
     private int hotelInfoId;
-    private ArrayList<Herbergi> hotelInfoHerbergi;
+    private ArrayList<Room> hotelInfoRoom;
 
-    ArrayList<Bokun> bokanir;
+    ArrayList<Booking> bokanir;
     @FXML
     private Button searchBookingBtn;
     @FXML
@@ -187,7 +187,7 @@ public class HotelController implements Initializable {
             if (rightHotel.getName().equals(hotel.getText())) {
                 hotelInfoName = rightHotel.getName();
                 hotelInfoId = rightHotel.getId();
-                hotelInfoHerbergi = rightHotel.getHerbergis();
+                hotelInfoRoom = rightHotel.getHerbergis();
                 hotelClicked = rightHotel;
             }
         }
@@ -199,7 +199,7 @@ public class HotelController implements Initializable {
         if(fxRequiredSpace.getValue() != null && fxRequiredSpace.getValue() != "") {
             hvc.setNumOfGuests((Integer) fxRequiredSpace.getValue());
         }
-        hvc.setHerbergis(hotelInfoHerbergi);
+        hvc.setHerbergis(hotelInfoRoom);
         hvc.setHotel(hotelClicked);
         hvc.setDatesChosen(checkInDate.getValue(),checkOutDate.getValue());
         hvc.setHotelContactInfo(hotelClicked.getContactNumber(), hotelClicked.getContactEmail());
@@ -231,7 +231,7 @@ public class HotelController implements Initializable {
             return;
         }
 
-        for(Bokun b: bokanir) {
+        for(Booking b: bokanir) {
             if(b.getBookingnumber().equals(bookingNrtoUUID)) {
                 FXMLLoader fxmlLoader = new FXMLLoader(HotelApplication.class.getResource("bokun.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 700, 700);

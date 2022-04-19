@@ -1,10 +1,8 @@
 package hi.hotel.vidmot;
 
 import hi.hotel.database.HotelFile;
-import hi.hotel.vinnsla.Bokun;
-import hi.hotel.vinnsla.Herbergi;
+import hi.hotel.vinnsla.Room;
 import hi.hotel.vinnsla.Hotel;
-import hi.hotel.vinnsla.Persona;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,7 +68,7 @@ public class HotelViewController implements Initializable {
     private Label fxBreakfastIncluded;
     private int hotelId;
     private Hotel hotel;
-    private ArrayList<Herbergi> herbergis;
+    private ArrayList<Room> rooms;
     private HotelFile hotelFile = new HotelFile();
     private int numOfGuests;
 
@@ -84,12 +82,12 @@ public class HotelViewController implements Initializable {
         fxHotelName.setText(name);
     }
 
-    public void setHerbergis(ArrayList<Herbergi> h) {
-        this.herbergis = h;
+    public void setHerbergis(ArrayList<Room> h) {
+        this.rooms = h;
         ObservableList<String> oherbergiList = FXCollections.observableArrayList();
-        for (Herbergi herbergi: h) {
-            if(herbergi.getSpaceFor() >= numOfGuests) {
-                oherbergiList.add(herbergi.getTypa());
+        for (Room room : h) {
+            if(room.getSpaceFor() >= numOfGuests) {
+                oherbergiList.add(room.getTypa());
             }
         }
 
@@ -168,11 +166,11 @@ public class HotelViewController implements Initializable {
         int herbergiId = 0;
 
         String herbergiName = String.valueOf(fxHerbergi.getValue());
-        for (Herbergi h:
-             herbergis) {
+        for (Room h:
+                rooms) {
             if (h.getTypa() == herbergiName) {
-                Herbergi herbergi = h;
-                herbergiId = herbergi.getId();
+                Room room = h;
+                herbergiId = room.getId();
             }
         }
         writeBooking(hotelId, herbergiId, checkin, checkout, uuid);
@@ -180,14 +178,14 @@ public class HotelViewController implements Initializable {
 
         setPersonurInBooking();
 
-        BokunDialog bd = new BokunDialog();
+        BookingDialog bd = new BookingDialog();
         bd.bokunMottekin(String.valueOf(uuid));
 
         backToHotelSelection(event);
     }
 
     /**
-     * Skrifar upplýsingar um gest í Personur.txt, eftir að bókun er framkvæmd.
+     * Skrifar upplýsingar um gest í Persons.txt, eftir að bókun er framkvæmd.
      * @param name
      * @param email
      * @param kennitala
@@ -195,7 +193,7 @@ public class HotelViewController implements Initializable {
      * @throws IOException
      */
     private void writePerson(String name, String email, String kennitala, UUID uuid) throws IOException {
-        File file = new File("Personur.txt");
+        File file = new File("Persons.txt");
         FileWriter fileWriter = new FileWriter(file, true);
         BufferedWriter writer = new BufferedWriter(fileWriter);
         writer.newLine();
@@ -234,10 +232,10 @@ public class HotelViewController implements Initializable {
      * @param actionEvent
      */
     public void setRoomInfo(ActionEvent actionEvent) {
-        for(Herbergi herbergi : hotel.getHerbergis()) {
-            if(herbergi.getTypa() == fxHerbergi.getValue()) {
-                setPrice(herbergi.getPricePerNight());
-                setFxSpaceFor(herbergi.getSpaceFor());
+        for(Room room : hotel.getHerbergis()) {
+            if(room.getTypa() == fxHerbergi.getValue()) {
+                setPrice(room.getPricePerNight());
+                setFxSpaceFor(room.getSpaceFor());
                 setFxTotalCost();
             }
         }

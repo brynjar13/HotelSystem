@@ -11,7 +11,7 @@ import java.util.ArrayList;
  **********************************************************/
 
 public class Hotel {
-    private ArrayList<Herbergi> herbergi;
+    private ArrayList<Room> room;
     private int id;
     private String name;
     private int numberOfRooms;
@@ -21,8 +21,8 @@ public class Hotel {
     private String contactNumber;
     private String contactEmail;
 
-    public Hotel(ArrayList<Herbergi> herbergi, int id, String name, int numberOfRooms, String town, String area, boolean breakfastIncluded, String contactnumber, String contactEmail) {
-        this.herbergi = herbergi;
+    public Hotel(ArrayList<Room> room, int id, String name, int numberOfRooms, String town, String area, boolean breakfastIncluded, String contactnumber, String contactEmail) {
+        this.room = room;
         this.id = id;
         this.name = name;
         this.numberOfRooms = numberOfRooms;
@@ -49,12 +49,12 @@ public class Hotel {
         return contactEmail;
     }
 
-    public Herbergi getHerbergi(int i) {
-        return (herbergi.get(i));
+    public Room getHerbergi(int i) {
+        return (room.get(i));
     }
 
-    public ArrayList<Herbergi> getHerbergis() {
-        return herbergi;
+    public ArrayList<Room> getHerbergis() {
+        return room;
     }
 
     public String getArea() {

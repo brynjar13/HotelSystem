@@ -7,10 +7,10 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.util.Optional;
 
-public class BokunDialog extends DialogPane {
+public class BookingDialog extends DialogPane {
     @FXML
     private Label fxBokunarNumer;
-    public BokunDialog() {
+    public BookingDialog() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("BokunDialog.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

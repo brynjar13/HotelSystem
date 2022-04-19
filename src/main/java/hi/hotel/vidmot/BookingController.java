@@ -1,10 +1,10 @@
 package hi.hotel.vidmot;
 
 import hi.hotel.database.HotelFile;
-import hi.hotel.vinnsla.Bokun;
-import hi.hotel.vinnsla.Herbergi;
+import hi.hotel.vinnsla.Booking;
+import hi.hotel.vinnsla.Room;
 import hi.hotel.vinnsla.Hotel;
-import hi.hotel.vinnsla.Persona;
+import hi.hotel.vinnsla.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,12 +56,12 @@ public class BookingController implements Initializable {
 
     private UUID bokunId;
     private HotelFile hotelFile = new HotelFile();
-    private ArrayList<Bokun> bokanir;
-    private ArrayList<Persona> personas;
+    private ArrayList<Booking> bokanir;
+    private ArrayList<Person> people;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bokanir = hotelFile.bokanir;
-        personas = hotelFile.personur;
+        people = hotelFile.personur;
     }
 
     public void setBokunId(UUID uuid) {
@@ -73,7 +73,7 @@ public class BookingController implements Initializable {
     private void setThings() {
         int heid = -1;
         int hid = -1;
-        for (Bokun b: bokanir) {
+        for (Booking b: bokanir) {
             if (b.getBookingnumber().equals(bokunId)) {
                 fxCheckin.setText(String.valueOf(b.getCheckIn()));
                 fxCheckout.setText(String.valueOf(b.getCheckOut()));
@@ -81,14 +81,14 @@ public class BookingController implements Initializable {
                 hid = b.getHotelId();
             }
         }
-        for (Persona p: personas) {
+        for (Person p: people) {
             if (p.getBookingId().equals(bokunId)) {
                 fxName.setText(p.getNafn());
                 fxEmail.setText(p.getEmail());
                 fxKennitala.setText(p.getKennitala());
             }
         }
-        for (Herbergi h: hotelFile.herbergis) {
+        for (Room h: hotelFile.rooms) {
             if (h.getId() == hid) {
                 fxHerbergi.setText(h.getTypa());
             }
@@ -112,9 +112,9 @@ public class BookingController implements Initializable {
                 bokanir.remove(i);
             }
         }
-        for (int i = 0; i < personas.size(); i++) {
-            if (personas.get(i).getBookingId().equals(bokunId)) {
-                personas.remove(i);
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i).getBookingId().equals(bokunId)) {
+                people.remove(i);
             }
         }
         resetBokanir();
@@ -128,8 +128,8 @@ public class BookingController implements Initializable {
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter writer = new BufferedWriter(fileWriter);
         int i = 0;
-        for (Bokun bokun: bokanir) {
-            writer.write(bokun.getHotelId() + "," + bokun.getHerbergi() + ",null," + bokun.getCheckIn() + "," + bokun.getCheckOut() + "," + bokun.getBookingnumber());
+        for (Booking booking : bokanir) {
+            writer.write(booking.getHotelId() + "," + booking.getHerbergi() + ",null," + booking.getCheckIn() + "," + booking.getCheckOut() + "," + booking.getBookingnumber());
             i++;
             if (i < bokanir.size()) {
                 writer.newLine();
@@ -139,14 +139,14 @@ public class BookingController implements Initializable {
     }
 
     private void resetPersonur() throws IOException {
-        File file = new File("Personur.txt");
+        File file = new File("Persons.txt");
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter writer = new BufferedWriter(fileWriter);
         int i = 0;
-        for (Persona p: personas) {
+        for (Person p: people) {
             writer.write(p.getNafn() + "," + p.getEmail() + "," + p.getKennitala() + "," + p.getBookingId());
             i++;
-            if (i < personas.size()) {
+            if (i < people.size()) {
                 writer.newLine();
             }
         }

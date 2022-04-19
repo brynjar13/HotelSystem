@@ -10,15 +10,15 @@ import java.util.ArrayList;
  *   í forritinu.
  *
  **********************************************************/
-public class Herbergi {
+public class Room {
     private String typa;
     private int id;
     private int hotelId;
-    private ArrayList<Bokun> bookedDates;
+    private ArrayList<Booking> bookedDates;
     private int pricePerNight;
     private int spaceFor;
 
-    public Herbergi(String typa, int id, int hotelId, ArrayList<Bokun> bookedDates, int pricePerNight, int spaceFor) {
+    public Room(String typa, int id, int hotelId, ArrayList<Booking> bookedDates, int pricePerNight, int spaceFor) {
         this.typa = typa;
         this.id = id;
         this.hotelId = hotelId;
@@ -29,10 +29,10 @@ public class Herbergi {
 
     /**
      * Bætir bókun við herbergi
-     * @param bokun
+     * @param booking
      */
-    public void addBooking(Bokun bokun) {
-       bookedDates.add(bokun);
+    public void addBooking(Booking booking) {
+       bookedDates.add(booking);
     }
 
     public String getTypa() {
@@ -62,7 +62,7 @@ public class Herbergi {
         return spaceFor;
     }
 
-    public ArrayList<Bokun>  getBookings() {
+    public ArrayList<Booking>  getBookings() {
         return bookedDates;
     }
 
@@ -74,14 +74,14 @@ public class Herbergi {
      * @return
      */
     public boolean hasDateOpen(LocalDate Checkin,  LocalDate Checkout) {
-        for(Bokun bokun: bookedDates) {
-                if(Checkin.isAfter(bokun.getCheckIn()) && Checkin.isBefore(bokun.getCheckOut())) {
+        for(Booking booking : bookedDates) {
+                if(Checkin.isAfter(booking.getCheckIn()) && Checkin.isBefore(booking.getCheckOut())) {
                     return false;
                 }
-            if(Checkin.isEqual(bokun.getCheckIn()) && Checkout.isEqual(bokun.getCheckOut())) {
+            if(Checkin.isEqual(booking.getCheckIn()) && Checkout.isEqual(booking.getCheckOut())) {
                 return false;
             }
-            if(bokun.getCheckIn().isAfter(Checkin) && bokun.getCheckIn().isBefore(Checkout)) {
+            if(booking.getCheckIn().isAfter(Checkin) && booking.getCheckIn().isBefore(Checkout)) {
                 return false;
             }
 

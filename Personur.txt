@@ -1,2 +1,0 @@
-bb,bbb@bbb.is,999999,ca89d6d7-e5cf-4e78-ab84-3f1262521b8d
-bbbbbbbb,a@a.sr,11111,292da0fd-a335-4a24-920c-59596abe914e
