@@ -89,12 +89,12 @@ public class BookingController implements Initializable {
             }
         }
         for (Room h: hotelFile.rooms) {
-            if (h.getId() == hid) {
+            if (h.getId() == heid) {
                 fxHerbergi.setText(h.getTypa());
             }
         }
         for (Hotel h: hotelFile.hotels) {
-            if (h.getId() == heid) {
+            if (h.getId() == hid) {
                 if (h.isBreakfastIncluded()) {
                     fxMatur.setText("Já");
                 } else {

@@ -72,6 +72,8 @@ public class HotelViewController implements Initializable {
     private ArrayList<Room> rooms;
     private HotelFile hotelFile = new HotelFile();
     private int numOfGuests;
+    private LocalDate checkInCheck = null;
+    private LocalDate checkOutCheck = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,22 +85,24 @@ public class HotelViewController implements Initializable {
         fxHotelName.setText(name);
     }
 
-    public void setHerbergis(ArrayList<Room> h) {
+    public void setHerbergis(ArrayList<Room> h, LocalDate checkIn, LocalDate checkOut) {
         this.rooms = h;
         ObservableList<String> oherbergiList = FXCollections.observableArrayList();
-        boolean bookedRoom = false;
         for (Room room : h) {
-            for(Booking b: room.getBookings()) {
-                if(b.getCheckIn().isEqual(LocalDate.parse(fxCheckinChosen.getText()))) {
-                    bookedRoom = true;
-                }
-            }
-            if(room.getSpaceFor() >= numOfGuests && !bookedRoom) {
+            if(room.getSpaceFor() >= numOfGuests) {
                 oherbergiList.add(room.getTypa());
             }
-            bookedRoom = false;
         }
 
+        for (Hotel hotel: hotelFile.hotels) {
+            if (hotel.getId() == hotelId) {
+                for (Room r: hotel.getHerbergis()) {
+                    if (!(r.hasDateOpen(checkIn, checkOut))) {
+                        oherbergiList.remove(r.getTypa());
+                    }
+                }
+            }
+        }
 
         fxHerbergi.setItems(oherbergiList);
     }
@@ -124,6 +128,8 @@ public class HotelViewController implements Initializable {
     public void setDatesChosen(LocalDate checkIn, LocalDate checkOut) {
         fxCheckinChosen.setText(checkIn.toString());
         fxCheckoutChosen.setText(checkOut.toString());
+        checkInCheck = checkIn;
+        checkOutCheck = checkOut;
     }
     public void setPrice(int price) {
         fxPrice.setText(price+ " kr.");
@@ -180,6 +186,13 @@ public class HotelViewController implements Initializable {
             if (h.getTypa() == herbergiName) {
                 Room room = h;
                 herbergiId = room.getId();
+            }
+        }
+        Booking newBooking = new Booking(hotelId, herbergiId,null, checkin, checkout, uuid);
+        for (Room rh: rooms) {
+            if (rh.getHotelId() == hotelId) {
+                rh.addBooking(newBooking);
+                break;
             }
         }
         writeBooking(hotelId, herbergiId, checkin, checkout, uuid);
