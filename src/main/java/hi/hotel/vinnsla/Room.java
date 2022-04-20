@@ -84,6 +84,15 @@ public class Room {
             if(booking.getCheckIn().isAfter(Checkin) && booking.getCheckIn().isBefore(Checkout)) {
                 return false;
             }
+            if(Checkin.isEqual(booking.getCheckIn()) && Checkout.isBefore(booking.getCheckOut())) {
+                return false;
+            }
+            if(Checkin.isEqual(booking.getCheckIn()) && Checkout.isAfter(booking.getCheckOut())) {
+                return false;
+            }
+            if(Checkin.isBefore(booking.getCheckIn()) && Checkout.isEqual(booking.getCheckOut())) {
+                return false;
+            }
 
         }
         return  true;

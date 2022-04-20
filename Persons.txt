@@ -3,7 +3,7 @@ Brynjar,a@a.sr,11111,292da0fd-a335-4a24-920c-59596abe914e
 Hermnn,gerg@exma.is,234234,10c08654-1037-4c6f-8ea2-76b8e154171d
 Hermann,Hermann@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120004
 Beta,betab@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120012
-Matt,matt@example.is,2345678,052182e2-b67f-11ec-b909-0242ac12004
+Matt,matt@example.is,2345678,052182e2-b67f-11ec-b909-00242ac12004
 Ólafur,olli@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120022
 Orri,orrinn@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120022
 Helga,Hlga@example.is,2345678,052182e2-b67f-11ec-b909-0242ac120025
