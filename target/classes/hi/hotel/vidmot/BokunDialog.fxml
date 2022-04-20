@@ -10,7 +10,7 @@
    <header>
       <Label alignment="CENTER" text="Bókun móttekin">
          <font>
-            <Font size="14.0" />
+            <Font size="16.0" />
          </font>
       </Label>
    </header>
@@ -22,12 +22,12 @@
          <children>
             <Label fx:id="fxBokunarNumer" text="Label">
                <font>
-                  <Font size="14.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
             <Label text="Borgun fer fram við innritun">
                <font>
-                  <Font size="14.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
          </children>

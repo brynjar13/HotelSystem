@@ -32,8 +32,8 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <DatePicker fx:id="checkInDate" layoutX="201.0" layoutY="175.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="175.0" />
-      <DatePicker fx:id="checkOutDate" layoutX="447.0" layoutY="175.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="175.0" />
+      <DatePicker fx:id="checkInDate" layoutX="201.0" layoutY="175.0" prefHeight="25.0" prefWidth="250.0" promptText="Frá" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="175.0" />
+      <DatePicker fx:id="checkOutDate" layoutX="447.0" layoutY="175.0" prefHeight="25.0" prefWidth="250.0" promptText="Til" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="175.0" />
       <ListView fx:id="hotelList" layoutX="152.0" layoutY="201.0" onMouseClicked="#clickHotel" prefHeight="402.0" prefWidth="380.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="200.0" />
       <ChoiceBox fx:id="searchByTownChoiceBox" layoutX="24.0" layoutY="150.0" prefWidth="150.0" AnchorPane.topAnchor="175.0" />
       <ChoiceBox fx:id="searchByAreaChoiceBox" layoutX="24.0" layoutY="209.0" prefWidth="150.0" AnchorPane.topAnchor="250.0" />
